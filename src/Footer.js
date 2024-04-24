@@ -19,7 +19,7 @@ const Footer = () => (
         <Container maxWidth="lg">
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={4}>
-                    <Typography variant="h6">EOTC Academy</Typography>
+                    <Typography variant="h7">St. Yared Academy of the EOTC  in Germany</Typography>
                     <Typography>
                         Empowering through education and research.
                     </Typography>
@@ -31,7 +31,7 @@ const Footer = () => (
                 <Grid item xs={12} sm={4}>
                     <Typography variant="h6">Get in Touch</Typography>
                     <Typography>
-                        Email: contact@eotcacademy.edu
+                        Email: office@yared-academy.org
                     </Typography>
                     <Typography>
                         Phone: +123 456 7890

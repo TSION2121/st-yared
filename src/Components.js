@@ -9,44 +9,44 @@ const StyledPaper = styled(Paper)`
   text-align: center;
 `;
 
-const Home = () => (
-    <>
-    <StyledPaper>
-        <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-        <Typography variant="body1">
-            Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-        </Typography>
-
-    </StyledPaper>
-        <StyledPaper>
-            <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-            <Typography variant="body1">
-                Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-            </Typography>
-
-        </StyledPaper>
-        <StyledPaper>
-            <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-            <Typography variant="body1">
-                Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-            </Typography>
-
-        </StyledPaper>
-<StyledPaper>
-    <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-    <Typography variant="body1">
-        Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-    </Typography>
-
-</StyledPaper>
-<StyledPaper>
-    <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-    <Typography variant="body1">
-        Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-    </Typography>
-
-</StyledPaper></>
-);
+// const Home = () => (
+//     <>
+//     <StyledPaper>
+//         <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
+//         <Typography variant="body1">
+//             Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
+//         </Typography>
+//
+//     </StyledPaper>
+//         <StyledPaper>
+//             <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
+//             <Typography variant="body1">
+//                 Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
+//             </Typography>
+//
+//         </StyledPaper>
+//         <StyledPaper>
+//             <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
+//             <Typography variant="body1">
+//                 Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
+//             </Typography>
+//
+//         </StyledPaper>
+// <StyledPaper>
+//     <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
+//     <Typography variant="body1">
+//         Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
+//     </Typography>
+//
+// </StyledPaper>
+// <StyledPaper>
+//     <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
+//     <Typography variant="body1">
+//         Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
+//     </Typography>
+//
+// </StyledPaper></>
+// );
 // components/DigitalArchive.js
 export const DigitalArchive = () => (
     <StyledPaper>
@@ -98,7 +98,7 @@ export const Dissemination = () => (
 );
 
 // components/Publicity.js
-export const Publicity = () => (
+export const Resources = () => (
     <StyledPaper>
         <Typography variant="h4">Publicity</Typography>
         <Typography variant="body1">
@@ -138,4 +138,3 @@ export const InternationalCooperation = () => (
 );
 
 
-export default Home;

@@ -12,13 +12,15 @@ import {
     useTheme,
     IconButton,
     Drawer,
-    Switch, FormControlLabel
+    Switch, FormControlLabel, Menu, MenuItem
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
 import Logo from './logo.png';
+// import Logo from './ligu-logo.png'; for dark mode
+
 import Research from "./Research";
-import Home, {
+import {
     Courses,
     DigitalArchive,
     Dissemination,
@@ -26,7 +28,7 @@ import Home, {
     Education,
     Integration, InternationalCooperation,
     Networks,
-    Publicity
+    Publicity, Resources
 } from "./Components";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -36,6 +38,16 @@ import SignInSide from "./Login";
 import SignUp from "./Register";
 import Footer from "./Footer";
 import ContactUs from "./Contact";
+import Home from "./Home";
+import AboutUs from "./AboutUs";
+import DirectorAndOthers from "./DirectorAndOthers";
+import Location from "./Location";
+import News from "./News";
+import Fellowships from "./Fellowships";
+import Fellowship from "./Fellowship";
+import Layout from "./layout/Layout";
+import LayoutNews from "./layout/LayoutNews";
+import FellowshipDetail from "./FellowshipDetail";
 // Styled components
 const StyledAppBar = styled(AppBar)`
   margin-bottom: 30px;
@@ -46,6 +58,11 @@ const StyledAppBar = styled(AppBar)`
 const StyledMainContent = styled(Box)`
   flex-grow: 1;
 `;
+const StyledMenus = styled(Menu)`
+//margin: 10vh;
+//  height: 30vh;
+color: red`;
+
 const StyledContainer = styled(Box)`
   display: flex;
   flex-direction: column;
@@ -73,13 +90,32 @@ const StyledLogo = styled('img')`
   margin-right: 20px;
 `;
 
-const NavigationBar = () => {
+export const NavigationBar = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [drawerOpen, setDrawerOpen] = useState(false);
 
+    // const [anchorEl, setAnchorEl] = useState(null);
+    // const open = Boolean(anchorEl);
+
     const handleDrawerToggle = () => {
         setDrawerOpen(!drawerOpen);
+    };
+
+    const [resourceMenuAnchorEl, setResourceMenuAnchorEl] = useState(null);
+    const [aboutMenuAnchorEl, setAboutMenuAnchorEl] = useState(null);
+
+    const handleResourceMenuOpen = (event) => {
+        setResourceMenuAnchorEl(event.currentTarget);
+    };
+
+    const handleAboutMenuOpen = (event) => {
+        setAboutMenuAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setResourceMenuAnchorEl(null);
+        setAboutMenuAnchorEl(null);
     };
 
     const drawer = (
@@ -98,6 +134,7 @@ const NavigationBar = () => {
                 <Tab icon={<StyledLogo src={Logo} alt="EOTC Academy Logo" />} component={Link} to="/"   onClick={handleDrawerToggle}  />
                 <Tab label="Home" component={Link} to="/"   onClick={handleDrawerToggle}  onClick={handleDrawerToggle}  />
                 <Tab label="Programs" component={Link} to="/research" onClick={handleDrawerToggle}  />
+                <Tab label="Resources" component={Link} to="/resources" onClick={handleDrawerToggle}  />
                 <Tab label=" Events" component={Link} to="/events" onClick={handleDrawerToggle}  />
                 <Tab label="About " component={Link} to="/about-and-history" onClick={handleDrawerToggle}  />
                 <Tab label="Contact Us" component={Link} to="/contact" onClick={handleDrawerToggle}  />
@@ -129,8 +166,55 @@ const NavigationBar = () => {
                     <Typography  >
                             {/*<Tab icon={<StyledLogo src={Logo} alt="EOTC Academy Logo" />} component={Link} to="/" />*/}
                             <Tab label="Programs" component={Link} to="/research" />
-                            <Tab label=" Events" component={Link} to="/events" />
-                            <Tab label="About " component={Link} to="/about-and-history" />
+                        <Tab label="Resources" component={Link} to="/resources"
+                             aria-controls="resource-menu"
+                             aria-haspopup="true"
+                             onMouseOver={handleResourceMenuOpen} // Open on hover
+                        />
+                       <StyledMenus  open={Boolean(resourceMenuAnchorEl)}>
+                           <Menu sx={{ top:'3vh'}}
+                            id="resource-menu"
+                            anchorEl={resourceMenuAnchorEl}
+                            keepMounted
+                            open={Boolean(resourceMenuAnchorEl)}
+                            onClose={handleMenuClose}
+                            MenuListProps={{
+                                onMouseLeave: handleMenuClose, // Close when mouse leaves the menu
+                            }}
+                        >
+                            <MenuItem onMouseOut={handleMenuClose} component={Link} to="/resources-and-history">Study at the academy</MenuItem>
+                            <MenuItem
+                                onMouseOut={handleMenuClose} component={Link} to="/resources-mission">Study on the web</MenuItem>
+                            {/* Add more MenuItem components as needed for additional submenus */}
+                        </Menu>
+                    </StyledMenus>
+
+                        <Tab label=" Events" component={Link} to="/events" />
+                            <Tab label="About " component={Link} to="/about-and-history"
+                                 aria-controls="about-menu"
+                                 aria-haspopup="true"
+                                 onMouseOver={handleAboutMenuOpen} // Open on hover
+                            />
+                       <StyledMenus                             open={Boolean(aboutMenuAnchorEl)}
+                       > <Menu
+                            id="about-menu"
+                            anchorEl={aboutMenuAnchorEl}
+                            keepMounted
+                            open={Boolean(aboutMenuAnchorEl)}
+                            onClose={handleMenuClose}
+                            MenuListProps={{
+                                onMouseLeave: handleMenuClose, // Close when mouse leaves the menu
+                            }}
+                        >
+                            <MenuItem onMouseOut={handleMenuClose} component={Link} to="/about-and-history">History</MenuItem>
+                            <MenuItem onMouseOut={handleMenuClose} component={Link} to="/about-and-mission">Our Mission</MenuItem>
+                           <MenuItem onMouseOut={handleMenuClose} component={Link} to="/director-and-others">Director And Others</MenuItem>
+                           <MenuItem onMouseOut={handleMenuClose} component={Link} to="/location">Our Location </MenuItem>
+
+
+                           {/* Add more MenuItem components as needed for additional submenus */}
+                        </Menu></StyledMenus>
+
                             <Tab label="Contact" component={Link} to="/contact" />
                             <Tab label="Login" component={Link} to="/login" />
                   </Typography>
@@ -211,15 +295,33 @@ const handleDarkModeToggle = () => {
                                 <Route path="/login" element={<SignInSide />} />
                                 <Route path="/register" element={<SignUp />} />
                                 <Route path="/digital-archive" element={<DigitalArchive/>}/>
-                                <Route path="/about-and-history" element={<Education/>}/>
+                                <Route path="/about-and-mission" element={<AboutUs/>}/>
+                                <Route path="/director-and-others" element={<DirectorAndOthers/>}/>
                                 <Route path="/integration" element={<Integration/>}/>
                                 <Route path="/ecumenism" element={<Ecumenism/>}/>
                                 <Route path="/dissemination" element={<Dissemination/>}/>
-                                <Route path="/publicity" element={<Publicity/>}/>
+                                <Route path="/resources" element={<Resources/>}/>
                                 <Route path="/courses" element={<Courses/>}/>
                                 <Route path="/networks" element={<Networks/>}/>
                                 <Route path="/international-cooperation" element={<InternationalCooperation/>}/>
                                 <Route path="/contact" element={<ContactUs />} />
+                                <Route path="/location" element={<Location />} />
+                                <Route path="/news" element={<News />} />
+                                <Route path="/fellowships" element={<Fellowships />} />
+                                <Route path="/fellowships-detail" element={<Fellowship />} />
+                                <Route path="/layout" element={<Layout />} />
+                                <Route path="/layout-news" element={<LayoutNews />} />
+                                <Route path="/layout" element={<Layout />} />
+                                <Route path="/layout" element={<Layout />} />
+
+                                <Route path="/fellowships/:title" component={<FellowshipDetail/>} />
+
+
+
+
+
+
+
 
 
 

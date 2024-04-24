@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import {useTheme} from "@mui/material/styles";
 
 function Copyright(props) {
     return (
@@ -34,6 +35,8 @@ const defaultTheme = createTheme();
 
 export default function SignInSide() {
     const navigate = useNavigate();
+    const theme = useTheme();
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -47,7 +50,7 @@ export default function SignInSide() {
     };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
