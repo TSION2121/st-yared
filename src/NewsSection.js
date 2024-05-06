@@ -1,18 +1,19 @@
 import React from 'react';
-import {Box, Card, CardContent, Grid, Link, Paper, Typography} from '@mui/material';
+import {Box, Card, CardContent, Grid, Paper, Typography} from '@mui/material';
+import {Link} from "react-router-dom";
 
 const newsItems = [
     {
-        details: 'Details of news item 1...',
+        title: 'Details of news item 1',
     },
     {
-        details: 'Details of news item 2...',
+        title: 'Details of news item 2',
     },
     {
-        details: 'Details of news item 3...',
+        title: 'Details of news item 3',
     },
     {
-        details: 'Details of news item 4...',
+        title: 'Details of news item 4',
     },
 
 
@@ -35,13 +36,15 @@ const NewsSection = () => (
                         Latest News
                         </Typography>
                         {newsItems.map((content, index) => (
-                            <CardContent sx={{borderBottom: '5px solid blue',  "&:last-child": { paddingBottom: 0 } }
+                            <CardContent key={index} sx={{borderBottom: '5px solid blue',  "&:last-child": { paddingBottom: 0 } }
                             } variant="body1">
-                            {content.details}
-
+                                <Link to={`/news/${content.title.replace(/\s+/g, '-').toLowerCase()}`}>
+                                    {/* Replace spaces with hyphens and convert to lowercase */}
+                                    {content.title}
+                                </Link>
                         </CardContent>))}
                         <Box sx={{ textAlign: 'center', padding: 2 }}>
-                            <Link href="/src/News" sx={{ textDecoration: 'none' }}>
+                            <Link to="/news-detail" sx={{ textDecoration: 'none' }}>
                                 More...
                             </Link>
                         </Box>

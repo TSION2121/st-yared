@@ -1,30 +1,30 @@
-
-// HomePage.js
 import React from 'react';
-// import NavigationBar from "./NavigationBar"; // Assuming you have this component
+// Import the NavigationBar if you have it ready
+// import NavigationBar from "./NavigationBar";
 import Footer from "./Footer";
 import AdsCarousel from "./AdsCarousel";
 import NewsSection from "./NewsSection";
 import Fellowships from "./Fellowships";
-import {Box, Grid} from "@mui/material";
-// import Fellowships from "./Fellowships"; // Assuming you have this component
+import { Box, Grid } from "@mui/material";
 
 const HomePage = () => {
     return (
-        <div>
+        <Box>
+            {/* Include the NavigationBar for better navigation */}
             {/*<NavigationBar />*/}
             <AdsCarousel />
-            <Grid container style={{ justifyContent: 'flex-end' }}>
-            {/* Set fixed widths for the NewsSection and Fellowships components */}
-            <Grid item style={{ width: 'calc(50% - 1px)', marginRight: '1px' }}>
-                <NewsSection />
+            <Grid container justifyContent="flex-end"  rowGap={2}>
+                {/* Use Box instead of Grid for better spacing control */}
+                <Box sx={{ width: '30%', mr: 0.5 }}>
+                    <NewsSection />
+                </Box>
+                <Box sx={{ width: '30%', ml: 0.5 }}>
+                    <Fellowships />
+                </Box>
             </Grid>
-            <Grid item style={{ width: 'calc(50% - 1px)', marginLeft: '1px' }}>
-                <Fellowships />
-            </Grid>
-        </Grid>
-
-        </div>
+            {/* Include the Footer for additional information */}
+            {/*<Footer />*/}
+        </Box>
     );
 };
 

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const newsItems = [
     {
-        title: 'Title-of-fellowship 1',
+        title: 'Title of fellowship 1',
         image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn'
     },
     {

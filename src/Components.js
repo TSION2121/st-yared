@@ -9,44 +9,6 @@ const StyledPaper = styled(Paper)`
   text-align: center;
 `;
 
-// const Home = () => (
-//     <>
-//     <StyledPaper>
-//         <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-//         <Typography variant="body1">
-//             Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-//         </Typography>
-//
-//     </StyledPaper>
-//         <StyledPaper>
-//             <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-//             <Typography variant="body1">
-//                 Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-//             </Typography>
-//
-//         </StyledPaper>
-//         <StyledPaper>
-//             <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-//             <Typography variant="body1">
-//                 Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-//             </Typography>
-//
-//         </StyledPaper>
-// <StyledPaper>
-//     <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-//     <Typography variant="body1">
-//         Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-//     </Typography>
-//
-// </StyledPaper>
-// <StyledPaper>
-//     <Typography variant="h4">Welcome to the St. Yared Academy</Typography>
-//     <Typography variant="body1">
-//         Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-//     </Typography>
-//
-// </StyledPaper></>
-// );
 // components/DigitalArchive.js
 export const DigitalArchive = () => (
     <StyledPaper>

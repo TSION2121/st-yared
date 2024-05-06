@@ -1,0 +1,30 @@
+{
+  "about_us":{
+  "about_title": "About St. Yared Academy",
+  "mission": "Mission",
+  "mission_description": "St. Yared Academy is dedicated to promoting science, research, and education about the Ethiopian Orthodox Tewahedo Church (EOTC). Our mission is realized by:",
+  "mission_point_1": "- Creating a dynamic & accessible academy for the professional development of university graduates and all interested individuals.",
+  "mission_point_2": "- Preserving and disseminating research results about the EOTC from various scientific research institutions.",
+  "mission_point_3": "- Conducting research on the influence of EOTC on the environment, culture, art, welfare architecture, literature, philosophy, music, language, and national history.",
+  "mission_point_4": "- Collecting, preserving, and restoring unique and valuable written heritage of EOTC through digital means and artifacts.",
+  "mission_point_5": "- Creating an accessible learning environment for academics and interested individuals of all ages to provide knowledge and experiences about EOTC."
+},
+"director":{
+  "director_and_activities": "Director & Activities",
+  "directors_role": "Director's Role",
+  "directors_role_description": "The director leads the promotion of science, research, and education about the Ethiopian Orthodox Tewahedo Church (EOTC).",
+  "association_activities": "Association Activities",
+  "association_activities_description": "The association is dedicated to:",
+  "activity_1": "Creating a dynamic academy for professional development.",
+  "activity_2": "Conducting research on EOTC's influence on culture and history.",
+  "activity_3": "Preserving and restoring EOTC's written heritage."
+},
+  "location": {
+    "we_are_located_at": "We're located at",
+    "academy_description": "St. Yared Academy of the Ethiopian Orthodox Tewahedo Church is located in Germany e.V.",
+    "address": "Address: C/o Emmi.Ruben Weg 15b 21147 Hamburg",
+    "map_title": "St. Yared Academy Location"
+
+}
+
+}

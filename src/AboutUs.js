@@ -1,6 +1,7 @@
 import React from 'react';
 import {Typography, Box, Container, Grid, Card, CardMedia, useTheme} from '@mui/material';
 import { styled, keyframes } from '@mui/system';
+import {useTranslation} from "react-i18next";
 
 // Image URL
 const churchImage = 'https://yt3.ggpht.com/a/AGF-l7-LQkmghwCr0bIbKdlr7R2yfgKr9cyZeWvvoQ=s900-c-k-c0xffffffff-no-rj-mo';
@@ -40,6 +41,9 @@ const StyledBox = styled(Box)(({ theme }) => ({
 // AboutUs component
 const AboutUs = () => {
     const theme = useTheme();
+    const { t } = useTranslation();
+
+
 
     const StyledCard = styled(Card)(({ theme }) => ({
         margin: '20px 0',
@@ -64,32 +68,32 @@ const AboutUs = () => {
     return (
         <Container>
             <Typography variant="h4" gutterBottom>
-                About St. Yared Academy
+                {t('about_us.about_title')}
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <StyledCard>
                         <StyledBox>
                             <Typography variant="h4" component="div" gutterBottom>
-                                Mission
+                                {t('about_us.mission')}
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                St. Yared Academy is dedicated to promoting science, research, and education about the Ethiopian Orthodox Tewahedo Church (EOTC). Our mission is realized by:
+                                {t('about_us.mission_description')}
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                - Creating a dynamic & accessible academy for the professional development of university graduates and all interested individuals.
+                                {t('about_us.mission_point_1')}
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                - Preserving and disseminating research results about the EOTC from various scientific research institutions.
+                                {t('about_us.mission_point_2')}
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                - Conducting research on the influence of EOTC on the environment, culture, art, welfare architecture, literature, philosophy, music, language, and national history.
+                                {t('about_us.mission_point_3')}
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                - Collecting, preserving, and restoring unique and valuable written heritage of EOTC through digital means and artifacts.
+                                {t('about_us.mission_point_4')}
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                - Creating an accessible learning environment for academics and interested individuals of all ages to provide knowledge and experiences about EOTC.
+                                {t('about_us.mission_point_5')}
                             </Typography>
                             {/* Add more points as needed */}
                         </StyledBox>
