@@ -49,20 +49,26 @@ export default function SignInSide() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/login', {
+            const response = await fetch('/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ username, password }),
             });
+
             if (response.ok) {
                 const { token, userId, username } = await response.json();
                 login(token, userId, username);
-                navigate('/home');
+                navigate('/admin/dashboard');
+            } else if (response.status === 404) {
+                console.error('Endpoint not found. Status:', response.status);
+                // Handle 404-specific logic here
             } else {
                 console.error('Login failed. Status:', response.status);
+                // Handle other errors here
             }
+
         } catch (error) {
             console.error('An error occurred:', error);
         }
