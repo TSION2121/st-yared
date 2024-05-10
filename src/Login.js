@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import {useTheme} from "@mui/material/styles";
+import {AuthContext} from './Context/AuthContext';
+import {useContext, useState} from "react";
 
 function Copyright(props) {
     return (
@@ -33,20 +35,37 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+
+
 export default function SignInSide() {
     const navigate = useNavigate();
     const theme = useTheme();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const { login } = useContext(AuthContext);
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-        navigate('/student');
 
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+            if (response.ok) {
+                const { token, userId, username } = await response.json();
+                login(token, userId, username);
+                navigate('/home');
+            } else {
+                console.error('Login failed. Status:', response.status);
+            }
+        } catch (error) {
+            console.error('An error occurred:', error);
+        }
     };
 
     return (
@@ -83,18 +102,24 @@ export default function SignInSide() {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <Box component="form" noValidate onSubmit={handleLogin} sx={{ mt: 1 }}>
+
+
                             <TextField
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
+                                id="username"
+                                label="Username"
+                                name="username"
+                                autoComplete="username"
                                 autoFocus
                             />
                             <TextField
+                                onChange={(e) => setPassword(e.target.value)}
+                                value={password}
                                 margin="normal"
                                 required
                                 fullWidth

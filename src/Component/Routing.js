@@ -26,13 +26,23 @@ import Layout from "../layout/Layout";
 import LayoutNews from "../layout/LayoutNews";
 import FellowshipDetail from "../FellowshipDetail";
 import React from "react";
+import ResearchPaper from "./Publication/ResearchPaper";
+import SubmitPaperForm from "./Publication/SubmitPaperForm";
+import PrivateRoute from "../Route/PrivateRoute";
+import AdminDashboard from "../Admin/AdminDashboard";
+import ResearchPaperForm from "./Publication/ResearchPaperForm";
+import ResearchPaperList from "./Publication/ResearchPaperList";
 
 const Routing = () => {
 
     return (
 
         <Routes>
-            <Route path="/" element={<Home/>}/>
+
+            <Route path="/" element={
+                <PrivateRoute>
+                    <Home/> </PrivateRoute>
+            }/>
             <Route path="/research" element={<Research/>}/>
             <Route path="/events" element={<Calendar />} />
             <Route path="/login" element={<SignInSide />} />
@@ -50,6 +60,13 @@ const Routing = () => {
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/location" element={<Location />} />
             <Route path="/news" element={<News />} />
+            <Route path="/researchpaper" element={<ResearchPaper />} />
+            {/*<Route path="/submitPaper" element={<SubmitPaperForm />} />*/}
+            <Route path="/submitPaper" element={<ResearchPaperForm />} />
+            <Route path="/papers" element={<ResearchPaperList />} />
+
+
+
             <Route path="/fellowships" element={<Fellowships />} />
             <Route path="/fellowships-detail" element={<Fellowship />} />
             <Route path="/news-detail" element={<NewsDetail />} />
@@ -58,7 +75,11 @@ const Routing = () => {
             <Route path="/fellowships/:title" element={<FellowshipDetail />} />
             <Route path="/news/:title" element={<LayoutNews />} />
 
-
+            <Route path="/admin/dashboard" element={
+                <PrivateRoute >
+                    <AdminDashboard />
+                </PrivateRoute>
+            } />
         </Routes>
 
     );

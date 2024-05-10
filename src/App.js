@@ -18,7 +18,8 @@ import {color} from "@mui/system";
 import {red} from "@mui/material/colors";
 import {I18nextProvider, useTranslation} from "react-i18next";
 // App.js
-import i18n from './Component/i18n'; // The path to your i18n.js file
+import i18n from './Component/i18n';
+import {AuthProvider} from "./Context/AuthContext"; // The path to your i18n.js file
 
 // Styled components
 
@@ -30,7 +31,7 @@ const [darkMode, setDarkMode] = useState(false);
     const { t } = useTranslation();
 
 // Use the `t` function to get the translated text
-    console.log(t('welcome_message'));
+//     console.log(t('welcome_message'));
 
 
 const lightTheme = createTheme({
@@ -96,8 +97,9 @@ const handleDarkModeToggle = () => {
                         {/*<MenuAppBar />*/}
                 </StyledAppBar>
                   </>
-                <>
-                    <Routing /> </>
+                    <AuthProvider>
+                        <Routing />
+                    </AuthProvider>
             </StyledMainContent>
             <Footer />
         </StyledContainer>
