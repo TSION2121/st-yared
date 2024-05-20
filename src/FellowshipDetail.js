@@ -14,7 +14,7 @@ const FellowshipDetail = () => {
             try {
                 const response = await axios.get('http://localhost:8080/api/research/papers');
                 const decodedTitle = decodeURIComponent(title).replace(/-/g, ' ');
-                const matchedPaper = response.data.find(paper => paper.title === decodedTitle);
+                const matchedPaper = response.data.find(paper => paper.title.toLowerCase() === decodedTitle.toLowerCase());
                 if (matchedPaper) {
                     setFellowshipDetail(matchedPaper);
                 } else {

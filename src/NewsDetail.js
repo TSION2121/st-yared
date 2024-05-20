@@ -3,6 +3,7 @@ import {Card, CardContent, Typography, Grid, Paper, Box} from '@mui/material';
 import NewsSection from "./NewsSection";
 import Fellowships from "./Fellowships";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const NewsDetail = ({darkMode}) => {
     const [newsPosted, setNewsPosted] = useState([]);
@@ -40,8 +41,11 @@ const NewsDetail = ({darkMode}) => {
                                 <Grid item xs={8} sm={6}>
                                     <Card>
                                         <CardContent>
+
                                             <Typography gutterBottom variant="h5" component="h2">
-                                                {key.title}
+                                                <Link to={`/news/${key.title.replace(/\s+/g, '-').toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                    {key.title}
+                                                </Link>
                                             </Typography>
                                             <Typography variant="body2" color="text.secondary">
                                                 {key.content}
@@ -62,7 +66,7 @@ const NewsDetail = ({darkMode}) => {
                     <Grid container  md={12}   rowGap={2}>
                         {/* Use Box instead of Grid for better spacing control */}
                         <Box sx={{backgroundColor:"skyblue" ,width: '100%',flexGrow: 1 }}>
-                            <NewsSection darkMode={darkMode} sx={{}} />
+                            <NewsSection darkMode={darkMode} showPagination={true} />
                         </Box>
                     </Grid>
                 </Grid>

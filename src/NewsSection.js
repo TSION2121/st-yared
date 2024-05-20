@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Card, CardContent, Grid, Typography, useTheme } from '@mui/material';
+import { Box, Card, CardContent, Grid, Typography, useTheme, Pagination } from '@mui/material';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
-const NewsSection = ({ darkMode }) => {
+const NewsSection = ({ darkMode, showPagination }) => {
     const theme = useTheme();
     const [newsItems, setNewsItems] = useState([]); // State to hold news data
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5; // Set the number of items per page
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -19,6 +21,16 @@ const NewsSection = ({ darkMode }) => {
 
         fetchNews();
     }, []);
+
+    // Calculate the current items to display
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = newsItems.slice(indexOfFirstItem, indexOfLastItem);
+
+    // Change page handler
+    const handleChangePage = (event, value) => {
+        setCurrentPage(value);
+    };
 
     return (
         <Box sx={{
@@ -34,7 +46,7 @@ const NewsSection = ({ darkMode }) => {
                         <Typography variant="h5" gutterBottom bgcolor={'#000000'} color={'#ffffff'}>
                             Latest News
                         </Typography>
-                        {newsItems.map((news, index) => (
+                        {currentItems.map((news, index) => (
                             <CardContent key={index}
                                          sx={{ borderBottom: '5px solid blue', "&:last-child": { paddingBottom: 0 } }}
                                          variant="body1">
@@ -52,7 +64,18 @@ const NewsSection = ({ darkMode }) => {
                                 More...
                             </Link>
                         </Box>
+
                     </Card>
+                    {/* Pagination control */}
+                    {showPagination && (
+                        <Pagination
+                            count={Math.ceil(newsItems.length / itemsPerPage)}
+                            page={currentPage}
+                            onChange={handleChangePage}
+                            color="primary"
+                            sx={{ display: 'flex', justifyContent: 'center', padding: 2 }}
+                        />
+                    )}
                 </Grid>
             </Grid>
         </Box>

@@ -126,7 +126,7 @@ const Layout = ({darkMode}) => {
                                                 <Grid container  md={12}   rowGap={2}>
                                                     {/* Use Box instead of Grid for better spacing control */}
                                                     <Box sx={{backgroundColor:"skyblue" ,width: '100%',flexGrow: 1 }}>
-                                                        <NewsSection darkMode={darkMode} sx={{}} />
+                                                        <NewsSection darkMode={darkMode} showPagination={true} />
                                                     </Box>
                                                 </Grid>
                                             </Grid>
