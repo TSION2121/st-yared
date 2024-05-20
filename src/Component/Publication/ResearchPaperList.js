@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, CardContent, Typography, Grid, Container } from '@mui/material';
+import {Card, CardContent, Typography, Grid, Container, Box} from '@mui/material';
 
 const ResearchPapersList = () => {
     const [papers, setPapers] = useState([]);
@@ -34,17 +34,21 @@ const ResearchPapersList = () => {
                                 <Typography color="text.secondary" gutterBottom>
                                     {paper.header}
                                 </Typography>
+                                <img
+                                style={{display: "flex", flexDirection:"row" , flexWrap:"wrap", width: '40%', height: 'auto',justifyContent: "center"
+                                }}
+                              src={paper.imageUrl}/>
                                 <Typography variant="body2">
-                                    Abstract: {paper.abstractText}
+                                  {paper.abstractText}
                                 </Typography>
                                 <Typography variant="body2">
-                                    Section: {paper.section}
+                                   {paper.section}
                                 </Typography>
                                 <Typography variant="body2">
-                                    Conclusion: {paper.conclusion}
+                                    {paper.conclusion}
                                 </Typography>
                                 <Typography variant="body2">
-                                    Reference: {paper.reference}
+                                 {paper.reference}
                                 </Typography>
                             </CardContent>
                         </Card>

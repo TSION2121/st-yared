@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {AppBar, Toolbar, Typography, Button, Container, Grid, Card, CardContent, Box, CardMedia} from '@mui/material';
 import { styled, keyframes } from '@mui/system';
+import axios from "axios";
+import {Link} from "react-router-dom";
+
 
 
 // Keyframes for animation
@@ -55,6 +58,21 @@ const newsItems = [
     },
    ];
 const Fellowship = () => {
+    const [papers, setPapers] = useState([]);
+
+    useEffect(() => {
+        const fetchPapers = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/research/papers');
+                setPapers(response.data);
+            } catch (error) {
+                console.error('Error fetching research papers:', error);
+            }
+        };
+
+        fetchPapers();
+    }, []);
+
     return (
         <div>
             <Container>
@@ -67,18 +85,20 @@ const Fellowship = () => {
                 <Typography variant="h4">Fellowships open for registration</Typography>
 
             <Grid container spacing={4}>
-                {newsItems.map((newsItem) => (
+                {papers.map((newsItem) => (
 
                     <Grid item key={newsItem.id} xs={12} sm={6} md={4}>
 
                         <StyledCard>
                             <StyledCardMedia
-                                image={newsItem.image}
+                                image={newsItem.imageUrl}
                                 title={newsItem.title}
                             />
                             <StyledCardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    {newsItem.title}
+                                    <Link to={`/fellowships/${newsItem.title.replace(/\s+/g, '-').toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        {newsItem.title}
+                                    </Link>
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary">
                                     {newsItem.date}

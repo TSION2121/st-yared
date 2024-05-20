@@ -1,27 +1,16 @@
 // ContactUs.js
 import React, { useState } from 'react';
-import {Container, Grid, TextField, Button, Typography, Box, useTheme} from '@mui/material';
-import ReCAPTCHA from 'react-google-recaptcha';
+import {Container, Grid, TextField, Button, Typography, Box, useTheme, Card} from '@mui/material';
 import {styled} from "@mui/system";
+import {StyledCard} from "./Styles/StyleComponent";
+import axios from "axios";
 
 
 const ContactUs = () => {
-    const theme = useTheme();
+    const theme =useTheme();
+    console.log(theme);
 
-// Styled components
-    const StyledCard = styled(Box)({
-        margin: '20px',
-        padding: '20px',
-        transition: 'box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out',
-        '&:hover': {
-            boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
-            transform: 'translateY(-5px)',
-        },
-        backgroundColor: theme.palette.background.paper,
-        color: theme.palette.text.primary,
-        borderRadius: '8px',
 
-    });
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -30,40 +19,49 @@ const ContactUs = () => {
         comment: ''
     });
 
-    const [recaptchaValue, setRecaptchaValue] = useState(null);
+    // const [recaptchaValue, setRecaptchaValue] = useState(null);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+
     };
 
-    const handleRecaptcha = (value) => {
-        setRecaptchaValue(value);
-    };
+    // const handleRecaptcha = (value) => {
+    //     setRecaptchaValue(value);
+    // };
 
-    const handleSubmit = (e) => {
+    const [success, setSuccess] = useState(false);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Here you would typically handle the form submission, such as sending data to a backend server
-        console.log('Form data submitted:', formData);
-        console.log('ReCAPTCHA value:', recaptchaValue);
+        try {
+            const response = await axios.post('http://localhost:8080/api/contact/submit', formData);
+            console.log(response.data.message);
+            setFormData({ firstName: '', lastName: '', affiliation: '', email: '', comment: '' }); // Clear the form
+            setSuccess(true); // Set the success state to true
+        } catch (error) {
+            console.error('There was an error!', error);
+        }
     };
 
     return (
         <Container maxWidth="md">
-            <StyledCard><Box sx={{ marginTop: 4, marginBottom: 4 }}>
+            {success && <p>Form successfully submitted!</p>
+            // navigate("/")
+            }
+
+            <Card><Box sx={{ marginTop: 4, marginBottom: 4 }}>
                 <Typography variant="h4" gutterBottom>
                     Contact Us
                 </Typography>
-                <form onSubmit={handleSubmit} noValidate autoComplete="off">
+                <form onSubmit={handleSubmit} >
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 required
                                 label="First Name"
                                 name="firstName"
+                                id="firstName"
                                 fullWidth
                                 value={formData.firstName}
                                 onChange={handleChange}
@@ -74,6 +72,7 @@ const ContactUs = () => {
                                 required
                                 label="Last Name"
                                 name="lastName"
+                                id="lastName"
                                 fullWidth
                                 value={formData.lastName}
                                 onChange={handleChange}
@@ -84,6 +83,7 @@ const ContactUs = () => {
                                 required
                                 label="Affiliation"
                                 name="affiliation"
+                                id="affiliation"
                                 fullWidth
                                 value={formData.affiliation}
                                 onChange={handleChange}
@@ -95,6 +95,7 @@ const ContactUs = () => {
                                 type="email"
                                 label="Email"
                                 name="email"
+                                id="email"
                                 fullWidth
                                 value={formData.email}
                                 onChange={handleChange}
@@ -104,6 +105,7 @@ const ContactUs = () => {
                             <TextField
                                 label="Comment"
                                 name="comment"
+                                id="comment"
                                 fullWidth
                                 multiline
                                 rows={4}
@@ -111,12 +113,7 @@ const ContactUs = () => {
                                 onChange={handleChange}
                             />
                         </Grid>
-                        <Grid item xs={12}>
-                            <ReCAPTCHA
-                                sitekey="6LeMsr8pAAAAAMdvdDGpDlvukFRpk-HouCvCJr8S" // Replace with your reCAPTCHA site key
-                                onChange={handleRecaptcha}
-                            />
-                        </Grid>
+
                         <Grid item xs={12}>
                             <Button type="submit" variant="contained" color="primary" fullWidth>
                                 Send
@@ -124,7 +121,7 @@ const ContactUs = () => {
                         </Grid>
                     </Grid>
                 </form>
-            </Box></StyledCard>
+            </Box></Card>
         </Container>
     );
 };

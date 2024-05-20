@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box } from '@mui/material';
+import {TextField, Button, Box, Grid, Container, useTheme, Card} from '@mui/material';
+import styled from "styled-components";
+import {StyledCard} from "../../Styles/StyleComponent";
 
 const ResearchPaperForm = () => {
+    const theme = useTheme();
+
+
     const [paper, setPaper] = useState({
         header: '',
         title: '',
+        imageUrl: '',
         abstractText: '',
         section: '',
         conclusion: '',
@@ -17,6 +23,10 @@ const ResearchPaperForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (paper.abstractText.length > 1000) { // Replace 1000 with your column's max length
+            console.error('Error: Abstract text is too long.');
+            return;
+        }
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -35,6 +45,7 @@ const ResearchPaperForm = () => {
             setPaper({
                 header: '',
                 title: '',
+                imageUrl: '',
                 abstractText: '',
                 section: '',
                 conclusion: '',
@@ -47,77 +58,109 @@ const ResearchPaperForm = () => {
     };
 
     return (
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="header"
-                label="Header"
-                name="header"
-                value={paper.header}
-                onChange={handleChange}
-                autoFocus
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="title"
-                label="Title"
-                name="title"
-                value={paper.title}
-                onChange={handleChange}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="abstractText"
-                label="Abstract"
-                name="abstractText"
-                value={paper.abstractText}
-                onChange={handleChange}
-                multiline
-                rows={4}
-            />
-            {/* Repeat for section, conclusion, and reference */}
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="section"
-                label="Section"
-                name="section"
-                value={paper.section}
-                onChange={handleChange}
-                multiline
-                rows={4}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="conclusion"
-                label="Conclusion"
-                name="conclusion"
-                value={paper.conclusion}
-                onChange={handleChange}
-                multiline
-                rows={4}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="reference"
-                label="Reference"
-                name="reference"
-                value={paper.reference}
-                onChange={handleChange}
-                multiline
-                rows={4}
-            />
+        <Container maxWidth="md">
+            <Card component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, mb: 1, mx: 'auto', width: '100%' }}>
+                <Grid container spacing={2}>
+                <Grid item xs={12} sm={2}>
+                    <TextField
+                        size="small"
+                        margin="normal"
+                        required
+                        // fullWidth
+                        id="header"
+                        label="Header"
+                        name="header"
+                        value={paper.header}
+                        onChange={handleChange}
+                        autoFocus
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        size="small"
+                        margin="normal"
+                        required
+                        // fullWidth
+                        id="title"
+                        label="Title"
+                        name="title"
+                        value={paper.title}
+                        onChange={handleChange}
+                    />
+                </Grid>
+                    <Grid item xs={7}>
+                        <TextField
+                            size="small"
+                            fullWidth
+                            name="imageUrl"
+                            id="imageUrl"
+                            type="text"
+                            placeholder="Image URL"
+                            onChange={handleChange}
+                            value={paper.imageUrl}
+                        />
+                    </Grid>
+                <Grid item xs={12} sm={8}>
+                    <TextField
+                        size="small"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="abstractText"
+                        label="Abstract"
+                        // multiline
+                        name="abstractText"
+                        value={paper.abstractText}
+                        onChange={handleChange}
+                        rows={4}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        size="small"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="section"
+                        label="Section"
+                        name="section"
+                        value={paper.section}
+                        onChange={handleChange}
+                        // multiline
+                        rows={4}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        size="small"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="conclusion"
+                        label="Conclusion"
+                        name="conclusion"
+                        value={paper.conclusion}
+                        onChange={handleChange}
+                        // multiline
+                        rows={4}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        size="small"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="reference"
+                        label="Reference"
+                        name="reference"
+                        value={paper.reference}
+                        onChange={handleChange}
+                        // multiline
+                        rows={4}
+                    />
+                </Grid>
+            </Grid>
             <Button
                 type="submit"
                 fullWidth
@@ -126,8 +169,7 @@ const ResearchPaperForm = () => {
             >
                 Submit Paper
             </Button>
-        </Box>
-    );
+            </Card>   </Container> );
 };
 
 export default ResearchPaperForm;

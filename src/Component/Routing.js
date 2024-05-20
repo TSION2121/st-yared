@@ -26,12 +26,16 @@ import Layout from "../layout/Layout";
 import LayoutNews from "../layout/LayoutNews";
 import FellowshipDetail from "../FellowshipDetail";
 import React from "react";
-import ResearchPaper from "./Publication/ResearchPaper";
-import SubmitPaperForm from "./Publication/SubmitPaperForm";
-import PrivateRoute from "../Route/PrivateRoute";
 import AdminDashboard from "../Admin/AdminDashboard";
 import ResearchPaperForm from "./Publication/ResearchPaperForm";
 import ResearchPaperList from "./Publication/ResearchPaperList";
+import AdminRoute from "../Route/AdminRoute";
+import NewsItem from "./News/NewsItem";
+import NewsPostForm from "./News/NewsPostForm";
+import ContactList from "./Contact/ContactList";
+import StudyAtAcademy from "./Resources/StudyAtAcademy";
+import StudyOnline from "./Resources/StudyOnline";
+import MoreCourses from "./Resources/MoreCourses";
 
 const Routing = () => {
 
@@ -39,33 +43,45 @@ const Routing = () => {
 
         <Routes>
 
+            {/*<Route path="/" element={*/}
+            {/*    <PrivateRoute>*/}
+            {/*        <Home/> </PrivateRoute>*/}
+            {/*}/>*/}
             <Route path="/" element={
-                <PrivateRoute>
-                    <Home/> </PrivateRoute>
+                    <Home/>
             }/>
             <Route path="/research" element={<Research/>}/>
             <Route path="/events" element={<Calendar />} />
             <Route path="/login" element={<SignInSide />} />
             <Route path="/register" element={<SignUp />} />
-            <Route path="/digital-archive" element={<DigitalArchive/>}/>
             <Route path="/about-and-mission" element={<AboutUs/>}/>
             <Route path="/director-and-others" element={<DirectorAndOthers/>}/>
-            <Route path="/integration" element={<Integration/>}/>
-            <Route path="/ecumenism" element={<Ecumenism/>}/>
-            <Route path="/dissemination" element={<Dissemination/>}/>
             <Route path="/resources" element={<Resources/>}/>
+            <Route path="/resources-academy" element={<StudyAtAcademy/>}/>
+            <Route path="/resources-Web" element={<StudyOnline/>}/>
             <Route path="/courses" element={<Courses/>}/>
-            <Route path="/networks" element={<Networks/>}/>
-            <Route path="/international-cooperation" element={<InternationalCooperation/>}/>
+
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/location" element={<Location />} />
             <Route path="/news" element={<News />} />
-            <Route path="/researchpaper" element={<ResearchPaper />} />
-            {/*<Route path="/submitPaper" element={<SubmitPaperForm />} />*/}
-            <Route path="/submitPaper" element={<ResearchPaperForm />} />
-            <Route path="/papers" element={<ResearchPaperList />} />
-
-
+            <Route path="/submitPaper"  element={
+                <AdminRoute >
+                    <ResearchPaperForm />
+            </AdminRoute>} />
+            <Route path="/newsItem"  element={
+                <AdminRoute >
+                    <NewsItem />
+                </AdminRoute>} />
+            <Route path="/ContactView"  element={
+                <AdminRoute >
+                    <ContactList />
+                </AdminRoute>} />
+            <Route path="/newsPost"  element={
+                <AdminRoute >
+                    <NewsPostForm />
+                </AdminRoute>} />
+            <Route path="/publications" element={<ResearchPaperList />} />
+            <Route path="/more-courses" element={<MoreCourses />} />
 
             <Route path="/fellowships" element={<Fellowships />} />
             <Route path="/fellowships-detail" element={<Fellowship />} />
@@ -76,9 +92,9 @@ const Routing = () => {
             <Route path="/news/:title" element={<LayoutNews />} />
 
             <Route path="/admin/dashboard" element={
-                <PrivateRoute >
+                <AdminRoute >
                     <AdminDashboard />
-                </PrivateRoute>
+                </AdminRoute>
             } />
         </Routes>
 

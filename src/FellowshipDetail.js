@@ -1,90 +1,84 @@
-import React from 'react';
-import {Link, useParams} from 'react-router-dom';
-import {Container, Paper, Typography, Box, Grid, Card, CardContent, CardMedia, Divider} from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import {useNavigate, useParams} from 'react-router-dom';
+import axios from 'axios';
+import { Container, Paper, Typography, Grid, Divider } from '@mui/material';
+import Button from "@mui/material/Button";
 
 const FellowshipDetail = () => {
-    const { title } = useParams(); // Get the title parameter from the URL
+    const { title } = useParams();
+    const navigate = useNavigate(); // Hook to access the navigate function
+    const [fellowshipDetail, setFellowshipDetail] = useState(null);
 
-    const fellowshipDetails = {
-        "title-of-fellowship-1": {
-            description: "Description for Fellowship 1",
-            image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn',
-            deadline: 'Application Deadline: January 31, 2024',
-            eligibility: 'Eligibility: Open to all graduate students',
-            amount: 'Fellowship Amount: $10,000',
-            contact: 'Contact: fellowship1@example.com',
-            // ...other details
-        },
-        "title-of-fellowship-2": {
-            description: "Description for Fellowship 2",
-            image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn',
-            // ...other details
-        },
-        "title-of-fellowship-3": {
-            description: "Description for Fellowship 3",
-            image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn',
-            // ...other details
-        },
-        "title-of-fellowship-4": {
-            description: "Description for Fellowship 4",
-            image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn',
-            // ...other details
-        },
-        // ...add as many fellowships as needed
+    useEffect(() => {
+        const fetchPapers = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/research/papers');
+                const decodedTitle = decodeURIComponent(title).replace(/-/g, ' ');
+                const matchedPaper = response.data.find(paper => paper.title === decodedTitle);
+                if (matchedPaper) {
+                    setFellowshipDetail(matchedPaper);
+                } else {
+                    console.log('No matching paper found');
+                }
+            } catch (error) {
+                console.error('Error fetching papers:', error);
+            }
+        };
+        fetchPapers();
+    }, [title]);
+    const handleBack = () => {
+        navigate(-1); // This will take the user back to the previous page
     };
 
-    const detail = fellowshipDetails[title];
-
     return (
-        <Container>
-            <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                        <CardMedia
-                            component="img"
-                            height="140"
-                            image={detail ? detail.image : ''}
-                            alt={title}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <CardContent>
-                            <Typography variant="h4">
-                                {detail ? detail.title : 'Fellowship Detail'}
-                            </Typography>
-                            <Typography variant="body1" style={{ marginTop: "20px" }}>
-                                {detail ? detail.description : ''}
-                            </Typography>
-                        </CardContent>
-                    </Grid>
-                </Grid>
-                <Box sx={{ flexGrow: 1, p: 3 }}>
-                    <Card sx={{ maxWidth: 600, mx: 'auto', mb: 2 }}>
-                        <CardContent>
+        <Container maxWidth="lg">
+            <Button onClick={handleBack} style={{ margin: '20px 0' }}>
+                Back
+            </Button>
+            <Paper elevation={3} sx={{ padding: "20px", marginTop: "20px", flexGrow: 1 }}>
+                {fellowshipDetail ? (
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} md={4}>
+                            <img
+                                style={{
+                                    width: '100%', // Adjust the width as needed
+                                    height: 'auto',
+                                    objectFit: 'cover', // This will cover the area without stretching the image
+                                    objectPosition: 'left' // This will align the image to the left
+                                }}
+                                src={fellowshipDetail.imageUrl}
+                                alt={fellowshipDetail.title}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={8}>
                             <Typography gutterBottom variant="h5" component="div">
-                                {title.replace(/-/g, ' ')}
+                                {fellowshipDetail.title}
                             </Typography>
                             <Divider sx={{ my: 1 }} />
-                            <Typography variant="body1" color="text.secondary">
-                                {detail.description}
+                            <Typography color="text.secondary" variant="h5" gutterBottom>
+                                {fellowshipDetail.header} <br/> <br/>
                             </Typography>
-                            <Typography variant="body1" color="text.secondary">
-                                {detail.deadline}
+                            <Typography variant="body2" style={{ textAlign: 'justify' }}>
+                                {fellowshipDetail.abstractText}
+                           <br/> <br/>
                             </Typography>
-                            <Typography variant="body1" color="text.secondary">
-                                {detail.eligibility}
+                            <Typography variant="body2" gutterBottom style={{ textAlign: 'justify' }}>
+                                {fellowshipDetail.section}
+                           <br/> <br/>
                             </Typography>
-                            <Typography variant="body1" color="text.secondary">
-                                {detail.amount}
+                            <Typography variant="body2" style={{ textAlign: 'justify' }}>
+                                {fellowshipDetail.conclusion}
+                           <br/> <br/>
                             </Typography>
-                            <Typography variant="body1" color="text.secondary">
-                                <Link href={`mailto:${detail.contact}`} color="inherit">
-                                    {detail.contact}
-                                </Link>
+                            <Typography variant="caption" style={{ textAlign: 'justify' }}>
+                                {fellowshipDetail.reference}
                             </Typography>
-                        </CardContent>
-                    </Card>
-                </Box>
+
+                        </Grid>
+                    </Grid>
+                ) : (
+                    <Typography variant="body1">Paper details are not available.</Typography>
+                )}
             </Paper>
         </Container>
     );

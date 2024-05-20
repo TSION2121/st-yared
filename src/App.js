@@ -92,7 +92,10 @@ const handleDarkModeToggle = () => {
                         style={{ marginLeft: 'auto' }} // Position to the right
                     />
                     <StyledAppBar position="relative">
-                    <NavigationBar/>
+                        <AuthProvider>
+                            <NavigationBar/>
+
+                        </AuthProvider>
                     {/*    <ClickNavigationBar />*/}
                         {/*<MenuAppBar />*/}
                 </StyledAppBar>

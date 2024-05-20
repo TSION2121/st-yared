@@ -13,7 +13,19 @@ export const StyledVerticalTabs = styled(Tabs)`
     flex-direction: column;
   }
 `;
+export const StyledCard = styled(Box)(({theme})=>({
+    margin: '20px',
+    padding: '20px',
+    transition: 'box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out',
+    '&:hover': {
+        boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
+        transform: 'translateY(-5px)',
+    },
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
+    borderRadius: '8px',
 
+}));
 export const StyledLogo = styled('img')`
   height: 50px;
   margin-right: 20px;

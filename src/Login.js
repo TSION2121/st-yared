@@ -58,8 +58,8 @@ export default function SignInSide() {
             });
 
             if (response.ok) {
-                const { token, userId, username } = await response.json();
-                login(token, userId, username);
+                const { token, userId, username,role } = await response.json();
+                login(token, userId, username,role === 'ADMIN');
                 navigate('/admin/dashboard');
             } else if (response.status === 404) {
                 console.error('Endpoint not found. Status:', response.status);
@@ -148,16 +148,16 @@ export default function SignInSide() {
                                 Sign In
                             </Button>
                             <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                                    </Link>
-                                </Grid>
-                                <Grid item>
-                                    <Link href="/register" variant="body2">
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </Grid>
+                                {/*<Grid item xs>*/}
+                                {/*    <Link href="#" variant="body2">*/}
+                                {/*        Forgot password?*/}
+                                {/*    </Link>*/}
+                                {/*</Grid>*/}
+                                {/*<Grid item>*/}
+                                {/*    <Link href="/register" variant="body2">*/}
+                                {/*        {"Don't have an account? Sign Up"}*/}
+                                {/*    </Link>*/}
+                                {/*</Grid>*/}
                             </Grid>
                             <Copyright sx={{ mt: 5 }} />
                         </Box>

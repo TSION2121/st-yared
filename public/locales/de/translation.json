@@ -25,6 +25,52 @@
     "address": "Adresse: C/o Emmi.Ruben Weg 15b, 21147 Hamburg",
     "map_title": "Standort der St. Yared Akademie"
 
-}
-
+},
+  "navigation": {
+    "academy_name": "St. Yared Akademie",
+    "home": "Zuhause",
+    "programs": "Programme",
+    "resources": "Ressourcen",
+    "events": "Veranstaltungen",
+    "about": "Über",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "logo_alt": "EOTC Akademie Logo",
+    "programs_submenu": {
+      "projects": "Projekte",
+      "publications": "Veröffentlichungen"
+    },
+    "resources_submenu": {
+      "study_at_academy": "Studium an der Akademie",
+      "study_on_web": "Studium im Web"
+    },
+    "about_submenu": {
+      "history": "Geschichte",
+      "our_mission": "Unsere Mission",
+      "director_and_others": "Direktor und andere",
+      "our_location": "Unser Standort"
+    }
+  }
+,
+  "study_online": {
+    "welcome": "Willkommen auf der Seite 'Online studieren'!",
+    "language": "Sprache",
+    "language_description": "Lernen Sie die reichen und vielfältigen Sprachen der Äthiopisch-Orthodoxen Tewahedo-Kirche bequem von zu Hause aus.",
+    "literature": "Literatur",
+    "literature_description": "Erforschen Sie die umfangreiche Literatur der Äthiopisch-Orthodoxen Tewahedo-Kirche online.",
+    "music": "Musik",
+    "music_description": "Entdecken Sie die einzigartige Musik der Äthiopisch-Orthodoxen Tewahedo-Kirche online.",
+    "more_courses": "Und vieles mehr..."
+  },
+  "study_at_academy": {
+    "welcome": "Willkommen auf der Seite 'An der Akademie studieren'!",
+    "language": "Sprache",
+    "language_description": "Lernen Sie die reichen und vielfältigen Sprachen der Äthiopisch-Orthodoxen Tewahedo-Kirche.",
+    "literature": "Literatur",
+    "literature_description": "Erforschen Sie die umfangreiche Literatur der Äthiopisch-Orthodoxen Tewahedo-Kirche.",
+    "music": "Musik",
+    "music_description": "Entdecken Sie die einzigartige Musik der Äthiopisch-Orthodoxen Tewahedo-Kirche.",
+    "more_courses": "Und vieles mehr..."
+  }
 }
