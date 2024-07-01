@@ -71,8 +71,13 @@ const FellowshipDetail = () => {
                            <br/> <br/>
                             </Typography>
                             <Typography variant="caption" style={{ textAlign: 'justify' }}>
-                                {fellowshipDetail.reference}
+                            REFERENCE
                             </Typography>
+                            <br/>
+
+                            <a variant="caption"  href={fellowshipDetail.reference} style={{ textAlign: 'justify' }}>
+                                {fellowshipDetail.reference}
+                            </a>
 
                         </Grid>
                     </Grid>

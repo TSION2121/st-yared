@@ -68,6 +68,10 @@ const Routing = () => {
                 <AdminRoute >
                     <ResearchPaperForm />
             </AdminRoute>} />
+            <Route path="/addCalendar"  element={
+                <AdminRoute >
+                    <Calendar />
+                </AdminRoute>} />
             <Route path="/newsItem"  element={
                 <AdminRoute >
                     <NewsItem />
@@ -75,7 +79,8 @@ const Routing = () => {
             <Route path="/ContactView"  element={
                 <AdminRoute >
                     <ContactList />
-                </AdminRoute>} />
+                </AdminRoute>
+            } />
             <Route path="/newsPost"  element={
                 <AdminRoute >
                     <NewsPostForm />

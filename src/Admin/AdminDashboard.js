@@ -28,12 +28,13 @@ const AdminDashboard = () => {
             </Paper>
             <Paper sx={{ my: 2, p: 2 }}>
                 <Typography variant="h6">Event Poster</Typography>
-                <Button variant="contained" color="primary">Create Event</Button>
+                <Button variant="contained" color="primary" onClick={() => navigate('/addCalendar')}
+                >Create Event</Button>
             </Paper>
 
             <Paper sx={{ my: 2, p: 2 }}>
                 <Typography variant="h6">Read Contact Message</Typography>
-                <Button variant="contained" color="primary">Get Contact us Messages</Button>
+                <Button variant="contained" color="primary" onClick={() => navigate('/Contactview')}>Get Contact us Messages</Button>
             </Paper></Grid>
         </Container>
     );
