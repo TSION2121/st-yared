@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs'; // Import Day.js
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -8,7 +8,8 @@ import {Dialog, Box, useTheme, Card} from '@mui/material';
 import styled from 'styled-components';
 import CalendarView from './CalendarView';
 import EventForm from "./EventForm";
-import EventViewer from "./EventViewer"; // Assuming you have a CalendarView component
+import EventViewer from "./EventViewer";
+import {AuthContext} from "../../Context/AuthContext"; // Assuming you have a CalendarView component
 
 const StyledDiv = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.paper : 'white',
@@ -22,36 +23,11 @@ const StyledDiv = styled('div')(({ theme }) => ({
 
 export default function Calendar() {
     const theme = useTheme();
-    const [selectedDate, setSelectedDate] = useState(null);
     const [events, setEvents] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const { isAuthenticated, logout, isAdmin } = useContext(AuthContext);
 
-    // Other state variables...
-
-    // useEffect(() => {
-    //     // Fetch events when selectedDate changes
-    //     if (selectedDate) {
-    //         const fetchEvents = async () => {
-    //             try {
-    //                 const response = await axios.get(
-    //                     `http://localhost:8080/api/events?date=${selectedDate}`
-    //                 );
-    //                 setEvents(response.data); // Assuming your API returns events for the selected date
-    //             } catch (error) {
-    //                 console.error('Error fetching events:', error);
-    //             }
-    //         };
-    //
-    //         fetchEvents();
-    //     }
-    // }, [selectedDate]);
-
-
-    const handleDateClick = (date) => {
-        setSelectedDate(date);
-        setOpenModal(true);
-    };
 
     const handleCloseModal = () => {
         setOpenModal(false);
@@ -74,16 +50,11 @@ export default function Calendar() {
                 sx={{ display:'flex' , flexDirection:'row'}}
 
             >
-            {/*<LocalizationProvider dateAdapter={AdapterDayjs}>*/}
-            {/*    <DateCalendar onDateClick={handleDateClick} selected={selectedDate} />*/}
-            {/*    /!*<DateCalendar defaultValue={dayjs('2024-07-11')} readOnly />*!/*/}
 
 
-            {/*</LocalizationProvider>*/}
+    <EventViewer events={events} />
 
 
-
-        <EventViewer events={events} />
 
                 <Dialog open={openModal} onClose={handleCloseModal}>
                     {/* EventList component */}
@@ -97,8 +68,11 @@ export default function Calendar() {
                         Event added successfully!
                     </Box>
                 )}
-            <EventForm onAddEvent={handleAddEvent} />
+                    {
+                        isAuthenticated && isAdmin ? (
 
+            <EventForm onAddEvent={handleAddEvent} />
+                        ) : null}
             </Card>
 
         </Box>
