@@ -30,8 +30,9 @@ const AdsCarousel = () => {
 
     const images = [Img1, Img2, Img3, Img4];
     return (
-        <div className="w-full m-auto">
-            <Slider {...sliderSettings} className='header-slider'>
+        <div className="w-full">
+            <Slider style={{width:'90%', height:'100%' , alignItems:'center'
+            }} {...sliderSettings} className='header-slider'>
                 {images.map((img, index) => (
                     <div key={index}>
                         <img
@@ -43,7 +44,7 @@ const AdsCarousel = () => {
                                 // maxWidth:'100%',
                                 maxHeight: '80vh', // Max height to fit the screen height
                                 objectFit: 'cover', // Contain the image within the div without cropping
-                                margin: '0 80px'
+                                margin: '0 80px',
                             }}
                         />
                     </div>

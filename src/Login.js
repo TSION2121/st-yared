@@ -43,6 +43,7 @@ export default function SignInSide() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useContext(AuthContext);
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
 
 
@@ -73,29 +74,28 @@ export default function SignInSide() {
             console.error('An error occurred:', error);
         }
     };
+    const handleAddEvent = () => {
+        // Add the new event to the events array
+        setFormSubmitted(true);
 
+    };
     return (
         <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
+            <Grid container component="main" sx={{ height: '70vh' , justifyContent:'center' }}>
                 <CssBaseline />
+                {/*after successful login*/}
+                {formSubmitted && (
+                    <Box sx={{ backgroundColor: 'lightgreen', color: 'black' }}>
+                        Event added successfully!
+                    </Box>
+                )}
                 <Grid
-                    item
-                    xs={false}
-                    sm={4}
-                    md={7}
-                    sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundColor: (t) =>
-                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
+                    sx={{backgroundColor: 'lavender',borderRadius:'10px'
                     }}
-                />
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                    item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                     <Box
                         sx={{
-                            my: 8,
+                            my: 2,
                             mx: 4,
                             display: 'flex',
                             flexDirection: 'column',
@@ -122,6 +122,8 @@ export default function SignInSide() {
                                 name="username"
                                 autoComplete="username"
                                 autoFocus
+                                size="small"
+
                             />
                             <TextField
                                 onChange={(e) => setPassword(e.target.value)}
@@ -134,11 +136,13 @@ export default function SignInSide() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                size="small"
+
                             />
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
-                            />
+                            {/*<FormControlLabel*/}
+                            {/*    control={<Checkbox value="remember" color="primary" />}*/}
+                            {/*    label="Remember me"*/}
+                            {/*/>*/}
                             <Button
                                 type="submit"
                                 fullWidth

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import {Container, Grid, TextField, Button, Typography, Box, useTheme, Card} from '@mui/material';
 import {styled} from "@mui/system";
-import {StyledCard} from "./Styles/StyleComponent";
+import {StyledCard} from "../../Styles/StyleComponent";
 import axios from "axios";
 
 
@@ -45,12 +45,25 @@ const ContactUs = () => {
     };
 
     return (
-        <Container maxWidth="md">
+        <Container  maxWidth="md"
+        sx={{
+            padding: '10px',
+            justifyContent:'center',
+            borderRadius: '8px',
+            border: '2px solid #888',
+            // margin: '10px'
+        }}
+        >
             {success && <p>Form successfully submitted!</p>
             // navigate("/")
             }
 
-            <Card><Box sx={{ marginTop: 4, marginBottom: 4 }}>
+            <Card><Box sx={{
+                backgroundColor:
+                    theme.palette.mode === 'dark'
+                        ? theme.palette.background.paper
+                        : 'white',
+                color: theme.palette.mode === 'dark' ? theme.palette.text.primary : 'light',            }}>
                 <Typography variant="h4" gutterBottom>
                     Contact Us
                 </Typography>
@@ -65,10 +78,13 @@ const ContactUs = () => {
                                 fullWidth
                                 value={formData.firstName}
                                 onChange={handleChange}
+                                size="small"
+
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
+                                size="small"
                                 required
                                 label="Last Name"
                                 name="lastName"
@@ -76,6 +92,8 @@ const ContactUs = () => {
                                 fullWidth
                                 value={formData.lastName}
                                 onChange={handleChange}
+                                size="small"
+
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -87,6 +105,8 @@ const ContactUs = () => {
                                 fullWidth
                                 value={formData.affiliation}
                                 onChange={handleChange}
+                                size="small"
+
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -99,6 +119,7 @@ const ContactUs = () => {
                                 fullWidth
                                 value={formData.email}
                                 onChange={handleChange}
+                                size="small"
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -108,7 +129,7 @@ const ContactUs = () => {
                                 id="comment"
                                 fullWidth
                                 multiline
-                                rows={4}
+                                rows={3}
                                 value={formData.comment}
                                 onChange={handleChange}
                             />

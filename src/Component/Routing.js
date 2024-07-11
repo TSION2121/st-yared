@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import Home from "../Home";
 import Research from "../Research";
-import Calendar from "./Calendar";
+import Calendar from "./Event/Calendar";
 import SignInSide from "../Login";
 import SignUp from "../Register";
 import {
@@ -11,12 +11,12 @@ import {
     Ecumenism,
     Integration,
     InternationalCooperation,
-    Networks,
+    Networks, Projects,
     Resources
 } from "../Components";
 import AboutUs from "../AboutUs";
 import DirectorAndOthers from "../DirectorAndOthers";
-import ContactUs from "../Contact";
+import ContactUs from "./Contact/Contact";
 import Location from "../Location";
 import News from "../News";
 import Fellowships from "../Fellowships";
@@ -36,6 +36,7 @@ import ContactList from "./Contact/ContactList";
 import StudyAtAcademy from "./Resources/StudyAtAcademy";
 import StudyOnline from "./Resources/StudyOnline";
 import MoreCourses from "./Resources/MoreCourses";
+import ViewCalendar from "./Event/ViewCalendar";
 
 const Routing = () => {
 
@@ -51,12 +52,15 @@ const Routing = () => {
                     <Home/>
             }/>
             <Route path="/research" element={<Research/>}/>
+            <Route path="/viewEvents" element={<ViewCalendar />} />
             <Route path="/events" element={<Calendar />} />
             <Route path="/login" element={<SignInSide />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/about-and-mission" element={<AboutUs/>}/>
             <Route path="/director-and-others" element={<DirectorAndOthers/>}/>
             <Route path="/resources" element={<Resources/>}/>
+            <Route path="/projects" element={<Projects/>}/>
+
             <Route path="/resources-academy" element={<StudyAtAcademy/>}/>
             <Route path="/resources-Web" element={<StudyOnline/>}/>
             <Route path="/courses" element={<Courses/>}/>
