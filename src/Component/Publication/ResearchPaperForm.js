@@ -16,6 +16,8 @@ const ResearchPaperForm = () => {
         conclusion: '',
         reference: ''
     });
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
 
     const handleChange = (e) => {
         setPaper({ ...paper, [e.target.name]: e.target.value });
@@ -51,6 +53,8 @@ const ResearchPaperForm = () => {
                 conclusion: '',
                 reference: ''
             });
+            setFormSubmitted(true);
+
         } catch (error) {
             console.error('Error submitting paper:', error.message);
             // Handle error (e.g., show error message)
@@ -59,9 +63,25 @@ const ResearchPaperForm = () => {
 
     return (
         <Container maxWidth="md">
-            <Card component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, mb: 1, mx: 'auto', width: '100%' }}>
-                <Grid container spacing={2}>
-                <Grid item xs={12} sm={2}>
+        <Card
+            sx={{ display:'flex' , flexDirection:'column', justifyContent:"space-between", rowGap:'10px', padding:'20px',
+                backgroundColor:
+                    theme.palette.mode === 'dark'
+                        ? theme.palette.background.paper
+                        : 'lavender',
+                color: theme.palette.mode === 'dark' ? theme.palette.text.primary : 'light',
+            }}
+        >
+
+            <form onSubmit={handleSubmit}
+
+            > {formSubmitted && (
+                <Box sx={{ backgroundColor: 'lightgreen', color: 'black' }}>
+                    Paper added successfully!
+                </Box>
+            )}
+                <Grid container spacing={2} >
+                <Grid item xs={12} sm={4}>
                     <TextField
                         size="small"
                         margin="normal"
@@ -75,7 +95,7 @@ const ResearchPaperForm = () => {
                         autoFocus
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={4}>
                     <TextField
                         size="small"
                         margin="normal"
@@ -88,10 +108,11 @@ const ResearchPaperForm = () => {
                         onChange={handleChange}
                     />
                 </Grid>
-                    <Grid item xs={7}>
+                    <Grid item xs={12} sm={4}>
                         <TextField
                             size="small"
-                            fullWidth
+                            margin="normal"
+                            // fullWidth
                             name="imageUrl"
                             id="imageUrl"
                             type="text"
@@ -100,7 +121,7 @@ const ResearchPaperForm = () => {
                             value={paper.imageUrl}
                         />
                     </Grid>
-                <Grid item xs={12} sm={8}>
+                <Grid item xs={12} sm={6}>
                     <TextField
                         size="small"
                         margin="normal"
@@ -108,44 +129,45 @@ const ResearchPaperForm = () => {
                         fullWidth
                         id="abstractText"
                         label="Abstract"
-                        // multiline
+                        multiline
                         name="abstractText"
                         value={paper.abstractText}
                         onChange={handleChange}
-                        rows={4}
+                        rows={2}
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={4}>
                     <TextField
                         size="small"
                         margin="normal"
                         required
                         fullWidth
+                        multiline
                         id="section"
                         label="Section"
                         name="section"
                         value={paper.section}
                         onChange={handleChange}
                         // multiline
-                        rows={4}
+                        rows={2}
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
                     <TextField
                         size="small"
                         margin="normal"
                         required
                         fullWidth
+                        multiline
                         id="conclusion"
                         label="Conclusion"
                         name="conclusion"
                         value={paper.conclusion}
                         onChange={handleChange}
-                        // multiline
-                        rows={4}
+                        rows={2}
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={4}>
                     <TextField
                         size="small"
                         margin="normal"
@@ -169,7 +191,8 @@ const ResearchPaperForm = () => {
             >
                 Submit Paper
             </Button>
-            </Card>   </Container> );
+            </form>        </Card>
+</Container> );
 };
 
 export default ResearchPaperForm;

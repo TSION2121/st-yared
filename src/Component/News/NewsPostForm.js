@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { TextField, Button, Grid, Paper } from '@mui/material';
+import {TextField, Button, Grid, Paper, TextareaAutosize, useTheme} from '@mui/material';
+import {Box} from "@mui/joy";
 
 const NewsPostForm = () => {
+    const theme = useTheme();
     const [newsItem, setNewsItem] = useState({
         title: '',
         content: '',
         imageUrl: '',
         date: '',
     });
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
     const handleChange = (e) => {
         setNewsItem({ ...newsItem, [e.target.name]: e.target.value });
     };
@@ -36,16 +40,40 @@ const NewsPostForm = () => {
                 imageUrl: '',
                 date: '',
             });
+            setFormSubmitted(true);
+
         } catch (error) {
             console.error("There was an error posting the news!", error.message);
         }
     };
 
     return (
-        <Paper style={{ padding: 16 }}>
+        <Box  sx={{
+            mt: 1,
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr ', md: '   1fr' },
+            gap: 2,
+            alignItems:'center',
+            padding: '10px',
+            borderRadius: '8px',
+            backgroundColor:
+                theme.palette.mode === 'dark'
+                    ? theme.palette.background.paper
+                    : 'lavender',
+            color: theme.palette.mode === 'dark' ? theme.palette.text.primary : 'light',            border: '2px solid #888',
+            margin: '10px',
+            width: '70%',
+            boxSizing: 'border-box',
+            '& .MuiTextField-root': { m: 1 },
+        }}>
+            {formSubmitted && (
+                <Box sx={{ backgroundColor: 'lightgreen', color: 'black' , }}>
+                    News added successfully!
+                </Box>
+            )}
             <form onSubmit={handleSubmit} >
                 <Grid container alignItems="flex-start" spacing={2}>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <TextField
                             size="small"
                             fullWidth
@@ -56,6 +84,22 @@ const NewsPostForm = () => {
                             placeholder="Title"
                             value={newsItem.title}
                             onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            size="small"
+                            fullWidth
+                            required
+                            id="date"
+                            name="date"
+                            type="date"
+                            placeholder="Date"
+                            value={newsItem.date}
+                            onChange={handleChange}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -84,24 +128,9 @@ const NewsPostForm = () => {
                             value={newsItem.content}
                         />
                     </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            size="small"
-                            fullWidth
-                            required
-                            id="date"
-                            name="date"
-                            type="date"
-                            placeholder="Date"
-                            value={newsItem.date}
-                            onChange={handleChange}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </Grid>
-                    <Grid item style={{ marginTop: 16 }}>
+                    <Grid item xs={12} style={{ marginTop: 16 }}>
                         <Button
+                            fullWidth
                             variant="contained"
                             color="primary"
                             type="submit"
@@ -111,7 +140,7 @@ const NewsPostForm = () => {
                     </Grid>
                 </Grid>
             </form>
-        </Paper>
+        </Box>
     );
 };
 

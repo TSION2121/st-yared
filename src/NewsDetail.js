@@ -23,7 +23,9 @@ const NewsDetail = ({darkMode}) => {
         fetchPapers();
     }, []);
     return (
-        <Paper elevation={3} style={{ padding: '20px', margin: '20px 120px',  }}>
+        <Paper elevation={3}
+               style={{ padding: '20px', margin: '20px 120px',  }}
+        >
 
             <Grid justifyContent="center" container spacing={2}>
 

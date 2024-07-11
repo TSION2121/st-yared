@@ -12,7 +12,7 @@ const NavigationBar = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const { isAuthenticated, logout } = useContext(AuthContext);
+    const { isAuthenticated, logout, isAdmin } = useContext(AuthContext);
 
     const handleDrawerToggle = () => {
         setDrawerOpen(!drawerOpen);
@@ -77,7 +77,13 @@ const NavigationBar = () => {
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
                 {t('navigation.academy_name')}
             </Typography>
-
+            {isAuthenticated ? (
+                isAdmin ? (
+                    <Button component={Link} to="/admin/dashboard">
+                        {t('navigation.dashboard')}
+                    </Button>
+                ) : null
+            ) : null}
             {isMobile ? (
                 <IconButton
                     edge="end"
@@ -89,6 +95,7 @@ const NavigationBar = () => {
                 </IconButton>
             ) : (
                 <>
+
                     <Box sx={{ display: { xs: 'none', sm: 'flex' }, ml: '2px', mx:2 }}>
                         <Typography>
                             <Tab label={t('navigation.programs')} component={Link} to="/research"
@@ -182,6 +189,7 @@ const NavigationBar = () => {
                 </>
             )}
             {drawer}
+
         </Toolbar>
     );
 };

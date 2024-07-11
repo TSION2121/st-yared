@@ -1,12 +1,13 @@
 // components/Home.js
 import React from 'react';
-import { Typography, Paper } from '@mui/material';
+import {Typography, Paper, Card, Grid} from '@mui/material';
 import styled from 'styled-components';
 
 const StyledPaper = styled(Paper)`
   padding: 20px;
   margin: 10px;
   text-align: center;
+  background-color: dodgerblue;
 `;
 
 // components/DigitalArchive.js
@@ -80,13 +81,60 @@ export const Courses = () => (
 );
 
 // components/Networks.js
-export const Networks = () => (
+export const Projects = () => (
     <StyledPaper>
-        <Typography variant="h4">Networks</Typography>
-        <Typography variant="body1">
-            We establish and maintain cooperation partner contacts and networks with persons and institutions on a national and international level that have an academic interest in EOTC.
+
+        <Grid container alignItems="flex-start" spacing={2}
+        //       sx={{  backgroundColor: 'dodgerblue'
+        // }}
+        >
+            <Grid  item xs={12} >
+            <Typography variant="h4">
+            List of projects
         </Typography>
-    </StyledPaper>
+            </Grid>
+
+            <Grid  item xs={6} >
+
+                <Card sx={{  backgroundColor: 'dodgerblue'
+                }} variant="outlined">
+                    <Typography>
+                        Project 1
+
+                    </Typography>
+                </Card>
+            </Grid>
+            <Grid  item xs={6} >
+
+            <Card sx={{  backgroundColor: 'dodgerblue'
+            }}    variant="outlined">
+                <Typography>
+                    Project 2
+
+                </Typography>              </Card>
+        </Grid>
+            <Grid  item xs={6} >
+
+                <Card sx={{  backgroundColor: 'dodgerblue'
+                }} variant="outlined">
+                    <Typography>
+                        Project 3
+
+                    </Typography>
+                </Card>
+            </Grid>
+            <Grid  item xs={6} >
+
+                <Card sx={{  backgroundColor: 'dodgerblue'
+                }}    variant="outlined">
+                    <Typography>
+                        Project 4
+
+                    </Typography>              </Card>
+            </Grid>
+        </Grid>
+
+</StyledPaper>
 );
 
 // components/InternationalCooperation.js

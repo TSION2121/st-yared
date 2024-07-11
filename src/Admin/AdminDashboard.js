@@ -26,6 +26,10 @@ const AdminDashboard = () => {
                 <Typography variant="h6">News Poster</Typography>
                 <Button variant="contained" color="primary" onClick={() => navigate('/newsPost')}>Post News</Button>
             </Paper>
+        <Paper sx={{ my: 2, p: 2 }}>
+            <Typography variant="h6"> News Manager </Typography>
+            <Button variant="contained" color="primary" onClick={() => navigate('/newsItem')}>Manage News</Button>
+        </Paper>
             <Paper sx={{ my: 2, p: 2 }}>
                 <Typography variant="h6">Event Poster</Typography>
                 <Button variant="contained" color="primary" onClick={() => navigate('/addCalendar')}
