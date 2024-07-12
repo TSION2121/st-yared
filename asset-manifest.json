@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/st-yared/static/css/main.23bb5cc4.css",
+    "main.js": "/st-yared/static/js/main.1033b236.js",
+    "static/js/453.2d2c278c.chunk.js": "/st-yared/static/js/453.2d2c278c.chunk.js",
+    "static/media/image_1.jpeg": "/st-yared/static/media/image_1.86cafafd0e9268228360.jpeg",
+    "static/media/images_3.jpeg": "/st-yared/static/media/images_3.6d40b524a4eff92836f1.jpeg",
+    "static/media/image_2.jpg": "/st-yared/static/media/image_2.2132db3042c3bead6fdb.jpg",
+    "static/media/ligu-logo.png": "/st-yared/static/media/ligu-logo.c86423e2448bdec98fac.png",
+    "static/media/slick.svg": "/st-yared/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/st-yared/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/st-yared/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/st-yared/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/st-yared/index.html",
+    "static/media/getFetch.cjs": "/st-yared/static/media/getFetch.c4cca45e22bc1b2c7d0d.cjs",
+    "main.23bb5cc4.css.map": "/st-yared/static/css/main.23bb5cc4.css.map",
+    "main.1033b236.js.map": "/st-yared/static/js/main.1033b236.js.map",
+    "453.2d2c278c.chunk.js.map": "/st-yared/static/js/453.2d2c278c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.23bb5cc4.css",
+    "static/js/main.1033b236.js"
+  ]
+}
