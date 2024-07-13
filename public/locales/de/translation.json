@@ -1,0 +1,76 @@
+{"about_us":{
+  "about_title": "Über die St. Yared Akademie",
+  "mission": "Mission",
+  "mission_description": "Die St. Yared Akademie widmet sich der Förderung von Wissenschaft, Forschung und Bildung über die Äthiopisch-Orthodoxe Tewahedo-Kirche (EOTC). Unsere Mission wird verwirklicht durch:",
+  "mission_point_1": "- Die Schaffung einer dynamischen und zugänglichen Akademie für die berufliche Entwicklung von Universitätsabsolventen und allen interessierten Personen.",
+  "mission_point_2": "- Die Bewahrung und Verbreitung von Forschungsergebnissen über die EOTC aus verschiedenen wissenschaftlichen Forschungseinrichtungen.",
+  "mission_point_3": "- Die Durchführung von Forschungen über den Einfluss der EOTC auf die Umwelt, Kultur, Kunst, Wohlfahrtsarchitektur, Literatur, Philosophie, Musik, Sprache und nationale Geschichte.",
+  "mission_point_4": "- Das Sammeln, Bewahren und Restaurieren von einzigartigem und wertvollem schriftlichen Erbe der EOTC durch digitale Mittel und Artefakte.",
+  "mission_point_5": "- Die Schaffung einer zugänglichen Lernumgebung für Akademiker und interessierte Personen aller Altersgruppen, um Wissen und Erfahrungen über die EOTC zu vermitteln."
+},
+  "director":
+  {
+    "director_and_activities": "Direktor & Aktivitäten",
+    "directors_role": "Rolle des Direktors",
+    "directors_role_description": "Der Direktor führt die Förderung von Wissenschaft, Forschung und Bildung über die Äthiopisch-Orthodoxe Tewahedo-Kirche (EOTC).",
+    "association_activities": "Vereinsaktivitäten",
+    "association_activities_description": "Der Verein widmet sich:",
+    "activity_1": "Der Schaffung einer dynamischen Akademie für die berufliche Entwicklung.",
+    "activity_2": "Der Durchführung von Forschungen über den Einfluss der EOTC auf Kultur und Geschichte.",
+    "activity_3": "Der Bewahrung und Restaurierung des schriftlichen Erbes der EOTC."
+  },
+  "location": {
+    "we_are_located_at": "Wir befinden uns in",
+    "academy_description": "Die St. Yared Akademie der Äthiopisch-Orthodoxen Tewahedo-Kirche befindet sich in Deutschland e.V.",
+    "address": "Adresse: C/o Emmi.Ruben Weg 15b, 21147 Hamburg",
+    "map_title": "Standort der St. Yared Akademie"
+
+},
+  "navigation": {
+    "academy_name": "St. Yared Akademie",
+    "home": "Zuhause",
+    "programs": "Programme",
+    "resources": "Ressourcen",
+    "events": "Veranstaltungen",
+    "about": "Über",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "logo_alt": "EOTC Akademie Logo",
+    "programs_submenu": {
+      "projects": "Projekte",
+      "publications": "Veröffentlichungen"
+    },
+    "resources_submenu": {
+      "study_at_academy": "Studium an der Akademie",
+      "study_on_web": "Studium im Web"
+    },
+    "about_submenu": {
+      "history": "Geschichte",
+      "our_mission": "Unsere Mission",
+      "director_and_others": "Direktor und andere",
+      "our_location": "Unser Standort"
+    }
+  }
+,
+  "study_online": {
+    "welcome": "Willkommen auf der Seite 'Online studieren'!",
+    "language": "Sprache",
+    "language_description": "Lernen Sie die reichen und vielfältigen Sprachen der Äthiopisch-Orthodoxen Tewahedo-Kirche bequem von zu Hause aus.",
+    "literature": "Literatur",
+    "literature_description": "Erforschen Sie die umfangreiche Literatur der Äthiopisch-Orthodoxen Tewahedo-Kirche online.",
+    "music": "Musik",
+    "music_description": "Entdecken Sie die einzigartige Musik der Äthiopisch-Orthodoxen Tewahedo-Kirche online.",
+    "more_courses": "Und vieles mehr..."
+  },
+  "study_at_academy": {
+    "welcome": "Willkommen auf der Seite 'An der Akademie studieren'!",
+    "language": "Sprache",
+    "language_description": "Lernen Sie die reichen und vielfältigen Sprachen der Äthiopisch-Orthodoxen Tewahedo-Kirche.",
+    "literature": "Literatur",
+    "literature_description": "Erforschen Sie die umfangreiche Literatur der Äthiopisch-Orthodoxen Tewahedo-Kirche.",
+    "music": "Musik",
+    "music_description": "Entdecken Sie die einzigartige Musik der Äthiopisch-Orthodoxen Tewahedo-Kirche.",
+    "more_courses": "Und vieles mehr..."
+  }
+}

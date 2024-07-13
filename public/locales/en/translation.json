@@ -1,0 +1,80 @@
+{
+  "about_us":{
+  "about_title": "About St. Yared Academy",
+  "mission": "Mission",
+  "mission_description": "St. Yared Academy is dedicated to promoting science, research, and education about the Ethiopian Orthodox Tewahedo Church (EOTC). Our mission is realized by:",
+  "mission_point_1": "- Creating a dynamic & accessible academy for the professional development of university graduates and all interested individuals.",
+  "mission_point_2": "- Preserving and disseminating research results about the EOTC from various scientific research institutions.",
+  "mission_point_3": "- Conducting research on the influence of EOTC on the environment, culture, art, welfare architecture, literature, philosophy, music, language, and national history.",
+  "mission_point_4": "- Collecting, preserving, and restoring unique and valuable written heritage of EOTC through digital means and artifacts.",
+  "mission_point_5": "- Creating an accessible learning environment for academics and interested individuals of all ages to provide knowledge and experiences about EOTC."
+},
+"director":{
+  "director_and_activities": "Director & Activities",
+  "directors_role": "Director's Role",
+  "directors_role_description": "The director leads the promotion of science, research, and education about the Ethiopian Orthodox Tewahedo Church (EOTC).",
+  "association_activities": "Association Activities",
+  "association_activities_description": "The association is dedicated to:",
+  "activity_1": "Creating a dynamic academy for professional development.",
+  "activity_2": "Conducting research on EOTC's influence on culture and history.",
+  "activity_3": "Preserving and restoring EOTC's written heritage."
+},
+  "location": {
+    "we_are_located_at": "We're located at",
+    "academy_description": "St. Yared Academy of the Ethiopian Orthodox Tewahedo Church is located in Germany e.V.",
+    "address": "Address: C/o Emmi.Ruben Weg 15b 21147 Hamburg",
+    "map_title": "St. Yared Academy Location"
+
+},
+  "navigation": {
+    "academy_name": "St. Yared Academy",
+    "home": "Home",
+    "programs": "Programs",
+    "resources": "Resources",
+    "events": "Events",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "logo_alt": "EOTC Academy Logo",
+    "programs_submenu": {
+      "projects": "Projects",
+      "publications": "Publications"
+    },
+    "resources_submenu": {
+      "study_at_academy": "Study at the Academy",
+      "study_on_web": "Study on the Web"
+    },
+    "about_submenu": {
+      "history": "History",
+      "our_mission": "Our Mission",
+      "director_and_others": "Director and Others",
+      "our_location": "Our Location"
+    }
+  }
+,
+  "study_online": {
+    "welcome": "Welcome to the Study Online page!",
+    "language": "Language",
+    "language_description": "Learn about the rich and diverse languages of the Ethiopian Orthodox Tewahedo Church from the comfort of your home.",
+    "literature": "Literature",
+    "literature_description": "Explore the vast literature of the Ethiopian Orthodox Tewahedo Church online.",
+    "music": "Music",
+    "music_description": "Discover the unique music of the Ethiopian Orthodox Tewahedo Church online.",
+    "more_courses": "And many more..."
+  },
+  "study_at_academy": {
+    "welcome": "Welcome to the Study at Academy page!",
+    "language": "Language",
+    "language_description": "Learn about the rich and diverse languages of the Ethiopian Orthodox Tewahedo Church.",
+    "literature": "Literature",
+    "literature_description": "Explore the vast literature of the Ethiopian Orthodox Tewahedo Church.",
+    "music": "Music",
+    "music_description": "Discover the unique music of the Ethiopian Orthodox Tewahedo Church.",
+    "more_courses": "And many more..."
+  }
+}
+
+
+

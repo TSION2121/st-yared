@@ -1,22 +1,15 @@
 // components/Home.js
 import React from 'react';
-import { Typography, Paper } from '@mui/material';
+import {Typography, Paper, Card, Grid} from '@mui/material';
 import styled from 'styled-components';
 
 const StyledPaper = styled(Paper)`
   padding: 20px;
   margin: 10px;
   text-align: center;
+  background-color: dodgerblue;
 `;
 
-const Home = () => (
-    <StyledPaper>
-        <Typography variant="h4">Welcome to the EOTC Academy</Typography>
-        <Typography variant="body1">
-            Explore our dynamic and accessible academy for professional development, research, and knowledge dissemination about the Ethiopian Orthodox Tewahedo Church.
-        </Typography>
-    </StyledPaper>
-);
 // components/DigitalArchive.js
 export const DigitalArchive = () => (
     <StyledPaper>
@@ -68,7 +61,7 @@ export const Dissemination = () => (
 );
 
 // components/Publicity.js
-export const Publicity = () => (
+export const Resources = () => (
     <StyledPaper>
         <Typography variant="h4">Publicity</Typography>
         <Typography variant="body1">
@@ -88,13 +81,60 @@ export const Courses = () => (
 );
 
 // components/Networks.js
-export const Networks = () => (
+export const Projects = () => (
     <StyledPaper>
-        <Typography variant="h4">Networks</Typography>
-        <Typography variant="body1">
-            We establish and maintain cooperation partner contacts and networks with persons and institutions on a national and international level that have an academic interest in EOTC.
+
+        <Grid container alignItems="flex-start" spacing={2}
+        //       sx={{  backgroundColor: 'dodgerblue'
+        // }}
+        >
+            <Grid  item xs={12} >
+            <Typography variant="h4">
+            List of projects
         </Typography>
-    </StyledPaper>
+            </Grid>
+
+            <Grid  item xs={6} >
+
+                <Card sx={{  backgroundColor: 'dodgerblue'
+                }} variant="outlined">
+                    <Typography>
+                        Project 1
+
+                    </Typography>
+                </Card>
+            </Grid>
+            <Grid  item xs={6} >
+
+            <Card sx={{  backgroundColor: 'dodgerblue'
+            }}    variant="outlined">
+                <Typography>
+                    Project 2
+
+                </Typography>              </Card>
+        </Grid>
+            <Grid  item xs={6} >
+
+                <Card sx={{  backgroundColor: 'dodgerblue'
+                }} variant="outlined">
+                    <Typography>
+                        Project 3
+
+                    </Typography>
+                </Card>
+            </Grid>
+            <Grid  item xs={6} >
+
+                <Card sx={{  backgroundColor: 'dodgerblue'
+                }}    variant="outlined">
+                    <Typography>
+                        Project 4
+
+                    </Typography>              </Card>
+            </Grid>
+        </Grid>
+
+</StyledPaper>
 );
 
 // components/InternationalCooperation.js
@@ -108,4 +148,3 @@ export const InternationalCooperation = () => (
 );
 
 
-export default Home;
