@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Container, Paper, Typography, Grid, Divider } from '@mui/material';
 import Button from "@mui/material/Button";
 
-const FellowshipDetail = () => {
+const SingleFellowshipDetail = () => {
     const { title } = useParams();
     const navigate = useNavigate(); // Hook to access the navigate function
     const [fellowshipDetail, setFellowshipDetail] = useState(null);
@@ -46,7 +46,7 @@ const FellowshipDetail = () => {
                                     objectFit: 'cover', // This will cover the area without stretching the image
                                     objectPosition: 'left' // This will align the image to the left
                                 }}
-                                src={fellowshipDetail.imageUrl}
+                                src={`data:image/jpeg;base64,${fellowshipDetail.image}`}
                                 alt={fellowshipDetail.title}
                             />
                         </Grid>
@@ -89,4 +89,4 @@ const FellowshipDetail = () => {
     );
 };
 
-export default FellowshipDetail;
+export default SingleFellowshipDetail;

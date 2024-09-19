@@ -1,12 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
-import axios from 'axios';
-import dayjs from 'dayjs'; // Import Day.js
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+
 import {Dialog, Box, useTheme, Card} from '@mui/material';
 import styled from 'styled-components';
-import CalendarView from './CalendarView';
 import EventForm from "./EventForm";
 import EventViewer from "./EventViewer";
 import {AuthContext} from "../../Context/AuthContext"; // Assuming you have a CalendarView component

@@ -37,7 +37,8 @@ const ResearchPapersList = () => {
                                 <img
                                 style={{display: "flex", flexDirection:"row" , flexWrap:"wrap", width: '40%', height: 'auto',justifyContent: "center"
                                 }}
-                              src={paper.imageUrl}/>
+                                src={`data:image/jpeg;base64,${paper.image}`}
+                                />
                                 <Typography variant="body2">
                                   {paper.abstractText}
                                 </Typography>

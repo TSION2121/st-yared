@@ -117,7 +117,8 @@ const Layout = ({darkMode}) => {
                                                 <Box
                                                     sx={{display: "flex", flexDirection:"row" , flexWrap:"wrap", width: '40%', height: 'auto',justifyContent: "center"
                                                     }}
-                                                    component={"img"}  src={newsDetail.imageUrl}
+                                                    component={"img"}
+                                                    src={`data:image/jpeg;base64,${newsDetail.image}`}
                                                 >
                                                 </Box>
                                                 {/* ... other news details ... */}

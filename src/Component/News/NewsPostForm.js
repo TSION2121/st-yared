@@ -1,77 +1,85 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {TextField, Button, Grid, Paper, TextareaAutosize, useTheme} from '@mui/material';
-import {Box} from "@mui/joy";
+import { TextField, Button, Grid, useTheme } from '@mui/material';
+import { Box } from "@mui/joy";
 
 const NewsPostForm = () => {
     const theme = useTheme();
     const [newsItem, setNewsItem] = useState({
         title: '',
         content: '',
-        imageUrl: '',
+        image: null,
         date: '',
     });
     const [formSubmitted, setFormSubmitted] = useState(false);
 
+    useEffect(() => {
+        const today = new Date().toISOString().split('T')[0];
+        setNewsItem(prevState => ({ ...prevState, date: today }));
+    }, []);
+
     const handleChange = (e) => {
-        setNewsItem({ ...newsItem, [e.target.name]: e.target.value });
+        const { name, value, files } = e.target;
+        if (name === 'image') {
+            setNewsItem({ ...newsItem, image: files[0] });
+        } else {
+            setNewsItem({ ...newsItem, [name]: value });
+        }
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newsItem)
-        };
-
-
+        const formData = new FormData();
+        formData.append('title', newsItem.title);
+        formData.append('content', newsItem.content);
+        formData.append('date', newsItem.date);
+        if (newsItem.image) {
+            formData.append('image', newsItem.image);
+        }
 
         try {
-            const response = await fetch('http://localhost:8080/api/news/submit', requestOptions);
+            const response = await axios.post('http://localhost:8080/api/news/submit', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            console.log('Paper submitted:', data);
+            console.log('News submitted:', response.data);
             setNewsItem({
                 title: '',
                 content: '',
-                imageUrl: '',
+                image: null,
                 date: '',
             });
             setFormSubmitted(true);
-
         } catch (error) {
             console.error("There was an error posting the news!", error.message);
         }
     };
 
     return (
-        <Box  sx={{
+        <Box sx={{
             mt: 1,
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr ', md: '   1fr' },
+            gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr', md: '1fr' },
             gap: 2,
-            alignItems:'center',
+            alignItems: 'center',
             padding: '10px',
             borderRadius: '8px',
-            backgroundColor:
-                theme.palette.mode === 'dark'
-                    ? theme.palette.background.paper
-                    : 'lavender',
-            color: theme.palette.mode === 'dark' ? theme.palette.text.primary : 'light',            border: '2px solid #888',
+            backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.paper : 'lavender',
+            color: theme.palette.mode === 'dark' ? theme.palette.text.primary : 'light',
+            border: '2px solid #888',
             margin: '10px',
             width: '70%',
             boxSizing: 'border-box',
             '& .MuiTextField-root': { m: 1 },
         }}>
             {formSubmitted && (
-                <Box sx={{ backgroundColor: 'lightgreen', color: 'black' , }}>
+                <Box sx={{ backgroundColor: 'lightgreen', color: 'black' }}>
                     News added successfully!
                 </Box>
             )}
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit}>
                 <Grid container alignItems="flex-start" spacing={2}>
                     <Grid item xs={6}>
                         <TextField
@@ -106,12 +114,11 @@ const NewsPostForm = () => {
                         <TextField
                             size="small"
                             fullWidth
-                            name="imageUrl"
-                            id="imageUrl"
-                            type="text"
-                            placeholder="Image URL"
+                            name="image"
+                            id="image"
+                            type="file"
+                            placeholder="Image"
                             onChange={handleChange}
-                            value={newsItem.imageUrl}
                         />
                     </Grid>
                     <Grid item xs={12}>

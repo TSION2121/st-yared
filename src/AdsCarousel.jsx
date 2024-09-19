@@ -3,9 +3,8 @@ import { useState } from "react";
 import "swiper/css";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import BannerImg1 from "./assets/image_1.jpeg";
-import BannerImg2 from "./assets/image_2.jpg";
-import BannerImg3 from "./assets/images_3.jpeg";
+import StYared from './assets/st-Yared-1.png';
+
 import {Image} from "@mui/icons-material";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
@@ -22,9 +21,9 @@ const AdsCarousel = () => {
 
     };
 
-    const Img1 = 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn';
+    const Img1 = StYared;
     const Img2 = 'https://www.ecured.cu/images/thumb/0/07/Saint_Yared.jpg/390px-Saint_Yared.jpg';
-    const Img3 = 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn';
+    const Img3 = StYared;
     const Img4 = 'https://th.bing.com/th/id/OIP.6nkCrM-lseB0eWUWRs0ftwAAAA?pid=ImgDet&w=189&h=253&c=7&dpr=1.4'
 
 

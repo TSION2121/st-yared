@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {TextField, Button, Box, Grid, Container, useTheme, Card} from '@mui/material';
 import styled from "styled-components";
 import {StyledCard} from "../../Styles/StyleComponent";
+import axios from "axios";
 
 const ResearchPaperForm = () => {
     const theme = useTheme();
@@ -19,46 +20,85 @@ const ResearchPaperForm = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
 
+    // const handleChange = (e) => {
+    //     setPaper({ ...paper, [e.target.name]: e.target.value });
+    // };
     const handleChange = (e) => {
-        setPaper({ ...paper, [e.target.name]: e.target.value });
+        const { name, value, files } = e.target;
+        if (name === 'image') {
+            setPaper({ ...paper, image: files[0] });
+        } else {
+            setPaper({ ...paper, [name]: value });
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append('header', paper.header);
+        formData.append('title', paper.title);
+        formData.append('abstractText', paper.abstractText);
+        formData.append('section', paper.section);
+        formData.append('conclusion', paper.conclusion);
+        formData.append('reference', paper.reference);
         if (paper.abstractText.length > 1000) { // Replace 1000 with your column's max length
             console.error('Error: Abstract text is too long.');
             return;
         }
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(paper)
-        };
+        if (paper.image) {
+            formData.append('image', paper.image);
+        }
 
         try {
-            // Replace 'http://localhost:8080' with the base URL of your server
-            const response = await fetch('http://localhost:8080/api/research/submit', requestOptions);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            console.log('Paper submitted:', data);
-            // Handle success (e.g., show a message, clear form)
+            const response = await axios.post('http://localhost:8080/api/research/submit', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            console.log('News submitted:', response.data);
             setPaper({
                 header: '',
                 title: '',
-                imageUrl: '',
+                image: null,
                 abstractText: '',
                 section: '',
                 conclusion: '',
                 reference: ''
             });
             setFormSubmitted(true);
-
         } catch (error) {
-            console.error('Error submitting paper:', error.message);
-            // Handle error (e.g., show error message)
+            console.error("There was an error posting the news!", error.message);
         }
+        // const requestOptions = {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(paper)
+        // };
+        // try {
+        //     // Replace 'http://localhost:8080' with the base URL of your server
+        //     const response = await fetch('http://localhost:8080/api/research/submit', requestOptions);
+        //     if (!response.ok) {
+        //         throw new Error(`HTTP error! status: ${response.status}`);
+        //     }
+        //     const data = await response.json();
+        //     console.log('Paper submitted:', data);
+        //     // Handle success (e.g., show a message, clear form)
+        //     setPaper({
+        //         header: '',
+        //         title: '',
+        //         imageUrl: '',
+        //         abstractText: '',
+        //         section: '',
+        //         conclusion: '',
+        //         reference: ''
+        //     });
+        //     setFormSubmitted(true);
+        //
+        // } catch (error) {
+        //     console.error('Error submitting paper:', error.message);
+        //     // Handle error (e.g., show error message)
+        // }
     };
 
     return (
@@ -111,14 +151,12 @@ const ResearchPaperForm = () => {
                     <Grid item xs={12} sm={4}>
                         <TextField
                             size="small"
-                            margin="normal"
-                            // fullWidth
-                            name="imageUrl"
-                            id="imageUrl"
-                            type="text"
-                            placeholder="Image URL"
+                            fullWidth
+                            name="image"
+                            id="image"
+                            type="file"
+                            placeholder="Image"
                             onChange={handleChange}
-                            value={paper.imageUrl}
                         />
                     </Grid>
                 <Grid item xs={12} sm={6}>

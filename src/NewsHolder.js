@@ -5,7 +5,7 @@ import Fellowships from "./Fellowships";
 import axios from "axios";
 import {Link} from "react-router-dom";
 
-const NewsDetail = ({darkMode}) => {
+const NewsHolder = ({darkMode}) => {
     const [newsPosted, setNewsPosted] = useState([]);
 
     // Demo news item data
@@ -35,7 +35,7 @@ const NewsDetail = ({darkMode}) => {
                             <Grid container sx={{marginBottom:"30px"}} rowGap={20}>
                                 <Grid item xs={4} sm={6}>
                                     <img
-                                        src={key.imageUrl}
+                                        src={`data:image/jpeg;base64,${key.image}`}
                                         alt="News"
                                         style={{ width: '100%', height: 'auto' }}
                                     />
@@ -78,4 +78,4 @@ const NewsDetail = ({darkMode}) => {
         </Paper>    );
 };
 
-export default NewsDetail;
+export default NewsHolder;

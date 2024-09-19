@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import cdReact, {useState, useContext, useEffect} from 'react';
+import { Link , useNavigate} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Toolbar, useMediaQuery, useTheme, IconButton, Drawer, Tab, Typography, Box, Menu, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -12,7 +12,8 @@ const NavigationBar = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const { isAuthenticated, logout, isAdmin } = useContext(AuthContext);
+    const { isAuthenticated, logout, isAdmin, login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleDrawerToggle = () => {
         setDrawerOpen(!drawerOpen);
@@ -22,6 +23,11 @@ const NavigationBar = () => {
     const [aboutMenuAnchorEl, setAboutMenuAnchorEl] = useState(null);
     const [programsMenuAnchorEl, setProgramsMenuAnchorEl] = useState(null);
 
+
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
     const handleProgramsMenuOpen = (event) => {
         setProgramsMenuAnchorEl(event.currentTarget);
     };
@@ -39,7 +45,9 @@ const NavigationBar = () => {
         setAboutMenuAnchorEl(null);
         setProgramsMenuAnchorEl(null);
     };
-
+    useEffect(() => {
+        // This will trigger a re-render when the authentication state changes
+    }, [isAuthenticated, isAdmin]);
     const drawer = (
         <Drawer
             anchor="right"
@@ -61,7 +69,7 @@ const NavigationBar = () => {
                 <Tab label={t('navigation.about')} component={Link} to="/about-and-history" onClick={handleDrawerToggle} />
                 <Tab label={t('navigation.contact')} component={Link} to="/contact" onClick={handleDrawerToggle} />
                 {isAuthenticated ? (
-                    <Tab label={t('navigation.logout')} onClick={logout} />
+                    <Tab label={t('navigation.logout')} onClick={handleLogout} />
                 ) : (
                     <Tab label={t('navigation.login')} component={Link} to="/login" onClick={handleDrawerToggle} />
                 )}
@@ -180,9 +188,9 @@ const NavigationBar = () => {
 
                             <Tab label={t('navigation.contact')} component={Link} to="/contact" />
                             {isAuthenticated ? (
-                                <Button onClick={logout}>{t('navigation.logout')}</Button>
+                                <Button onClick={handleLogout}>{t('navigation.logout')}</Button>
                             ) : (
-                                <Button component={Link} to="/login">{t('navigation.login')}</Button>
+                                <Button component={Link} to="/login"  >{t('navigation.login')}</Button>
                             )}
                         </Typography>
                     </Box>

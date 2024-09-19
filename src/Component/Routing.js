@@ -6,12 +6,7 @@ import SignInSide from "../Login";
 import SignUp from "../Register";
 import {
     Courses,
-    DigitalArchive,
-    Dissemination,
-    Ecumenism,
-    Integration,
-    InternationalCooperation,
-    Networks, Projects,
+    Projects,
     Resources
 } from "../Components";
 import AboutUs from "../AboutUs";
@@ -20,11 +15,11 @@ import ContactUs from "./Contact/Contact";
 import Location from "../Location";
 import News from "../News";
 import Fellowships from "../Fellowships";
-import Fellowship from "../Fellowship";
-import NewsDetail from "../NewsDetail";
+import FellowshipHolder from "../FellowshipHolder";
+import NewsHolder from "../NewsHolder";
 import Layout from "../layout/Layout";
-import LayoutNews from "../layout/LayoutNews";
-import FellowshipDetail from "../FellowshipDetail";
+import LayoutNews from "../layout/SingleLayoutNews";
+import SingleFellowshipDetail from "../SingleFellowshipDetail";
 import React from "react";
 import AdminDashboard from "../Admin/AdminDashboard";
 import ResearchPaperForm from "./Publication/ResearchPaperForm";
@@ -36,7 +31,6 @@ import ContactList from "./Contact/ContactList";
 import StudyAtAcademy from "./Resources/StudyAtAcademy";
 import StudyOnline from "./Resources/StudyOnline";
 import MoreCourses from "./Resources/MoreCourses";
-import ViewCalendar from "./Event/ViewCalendar";
 
 const Routing = () => {
 
@@ -52,7 +46,6 @@ const Routing = () => {
                     <Home/>
             }/>
             <Route path="/research" element={<Research/>}/>
-            <Route path="/viewEvents" element={<ViewCalendar />} />
             <Route path="/events" element={<Calendar />} />
             <Route path="/login" element={<SignInSide />} />
             <Route path="/register" element={<SignUp />} />
@@ -93,11 +86,11 @@ const Routing = () => {
             <Route path="/more-courses" element={<MoreCourses />} />
 
             <Route path="/fellowships" element={<Fellowships />} />
-            <Route path="/fellowships-detail" element={<Fellowship />} />
-            <Route path="/news-detail" element={<NewsDetail />} />
+            <Route path="/fellowships-detail" element={<FellowshipHolder />} />
+            <Route path="/news-detail" element={<NewsHolder />} />
             <Route path="/layout" element={<Layout />} />
             <Route path="/layout-news" element={<LayoutNews />} />
-            <Route path="/fellowships/:title" element={<FellowshipDetail />} />
+            <Route path="/fellowships/:title" element={<SingleFellowshipDetail />} />
             <Route path="/news/:title" element={<LayoutNews />} />
 
             <Route path="/admin/dashboard" element={

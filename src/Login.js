@@ -44,6 +44,7 @@ export default function SignInSide() {
     const [password, setPassword] = useState('');
     const { login } = useContext(AuthContext);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
 
 
@@ -59,19 +60,19 @@ export default function SignInSide() {
             });
 
             if (response.ok) {
-                const { token, userId, username,role } = await response.json();
-                login(token, userId, username,role === 'ADMIN');
+                const { token, userId, username, role } = await response.json();
+                login(token, userId, username, role === 'ADMIN');
                 navigate('/admin/dashboard');
             } else if (response.status === 404) {
-                console.error('Endpoint not found. Status:', response.status);
-                // Handle 404-specific logic here
+                setErrorMessage('Endpoint not found.');
+            } else if (response.status === 401) {
+                setErrorMessage('Invalid username or password.');
             } else {
-                console.error('Login failed. Status:', response.status);
-                // Handle other errors here
+                setErrorMessage('Login failed. Please try again.');
             }
 
         } catch (error) {
-            console.error('An error occurred:', error);
+            setErrorMessage('An error occurred. Please try again.');
         }
     };
     const handleAddEvent = () => {
@@ -108,7 +109,12 @@ export default function SignInSide() {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
-                        <Box component="form" noValidate onSubmit={handleLogin} sx={{ mt: 1 }}>
+                        <Box component="form"  onSubmit={handleLogin} sx={{ mt: 1 }}>
+                            {errorMessage && (
+                                <Typography color="error" variant="body2">
+                                    {errorMessage}
+                                </Typography>
+                            )}
 
 
                             <TextField
@@ -171,3 +177,7 @@ export default function SignInSide() {
         </ThemeProvider>
     );
 }
+
+
+
+

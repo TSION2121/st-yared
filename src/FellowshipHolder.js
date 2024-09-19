@@ -3,6 +3,7 @@ import {AppBar, Toolbar, Typography, Button, Container, Grid, Card, CardContent,
 import { styled, keyframes } from '@mui/system';
 import axios from "axios";
 import {Link} from "react-router-dom";
+import StYared from './assets/st-Yared-1.png';
 
 
 
@@ -46,18 +47,18 @@ const StyledCardContent = styled(CardContent)`
 const newsItems = [
     {
         title: 'Details of news item 1...',
-        image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn'
+        image:   StYared
     },
     {
         title: 'Details of news item 2...',
-        image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn'
+        image:   StYared
     },
     {
         title: 'Details of news item 3...',
-        image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn'
+        image:   StYared
     },
    ];
-const Fellowship = () => {
+const FellowshipHolder = () => {
     const [papers, setPapers] = useState([]);
 
     useEffect(() => {
@@ -91,7 +92,7 @@ const Fellowship = () => {
 
                         <StyledCard>
                             <StyledCardMedia
-                                image={newsItem.imageUrl}
+                                image={`data:image/jpeg;base64,${newsItem.image}`}
                                 title={newsItem.title}
                             />
                             <StyledCardContent>
@@ -147,4 +148,4 @@ const Fellowship = () => {
     );
 }
 
-export default Fellowship
+export default FellowshipHolder

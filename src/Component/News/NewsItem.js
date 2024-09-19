@@ -38,11 +38,44 @@ const NewsItem = ({ news={}, onRemove }) => {
         });
     };
 
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+            setEditFormValues({
+                ...editFormValues,
+                image:file
+            });
+        };
+
+
+    // const handleFormSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const response = await axios.put(`http://localhost:8080/api/news/${editFormValues.id}`, editFormValues);
+    //     setNewsPosted(newsPosted.map(news => news.id === editFormValues.id ? response.data : news));
+    //     setEditId(null);
+    // };
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const response = await axios.put(`http://localhost:8080/api/news/${editFormValues.id}`, editFormValues);
-        setNewsPosted(newsPosted.map(news => news.id === editFormValues.id ? editFormValues : news));
-        setEditId(null);
+        const formData = new FormData();
+        formData.append('title', editFormValues.title);
+        formData.append('content', editFormValues.content);
+        formData.append('date', editFormValues.date);
+
+        if (editFormValues.image) {
+            formData.append('image', editFormValues.image);
+        }
+
+        try {
+            const response = await axios.put(`http://localhost:8080/api/news/${editFormValues.id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            setNewsPosted(newsPosted.map(news => news.id === editFormValues.id ? response.data : news));
+            setEditId(null);
+        } catch (error) {
+            console.error('Error updating news:', error);
+        }
     };
 
     return (
@@ -57,7 +90,7 @@ const NewsItem = ({ news={}, onRemove }) => {
                                         <Stack spacing={2} direction="column">
                                             <TextField name="title" label="Title" value={editFormValues.title} onChange={handleFormChange} />
                                             <TextField name="content" label="Content" value={editFormValues.content} onChange={handleFormChange} />
-                                            <TextField name="imageUrl" label="Image URL" value={editFormValues.imageUrl} onChange={handleFormChange} />
+                                            <input type="file" accept="image/*" onChange={handleImageChange} />
                                             <TextField name="date" label="Date" value={editFormValues.date} onChange={handleFormChange} />
                                             <Button type="submit">Submit</Button>
                                         </Stack>
@@ -85,7 +118,7 @@ const NewsItem = ({ news={}, onRemove }) => {
                                         <Box
                                             sx={{display: "flex", flexDirection:"row" , flexWrap:"wrap", width: '40%', height: 'auto',justifyContent: "center"
                                         }}
-                                            component={"img"}  src={paper.imageUrl}
+                                            component={"img"} src={`data:image/jpeg;base64,${paper.imageBase64}`}
                                             >
                                         </Box>
 
