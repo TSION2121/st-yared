@@ -32,14 +32,15 @@
     "programs": "Programme",
     "resources": "Ressourcen",
     "events": "Veranstaltungen",
-    "about": "Über",
-    "contact": "Kontakt",
+    "about": "Über uns",
+    "contact": "Kontaktieren Sie uns",
     "login": "Anmelden",
     "logout": "Abmelden",
     "logo_alt": "EOTC Akademie Logo",
     "programs_submenu": {
-      "projects": "Projekte",
-      "publications": "Veröffentlichungen"
+      "training": "Trainings",
+      "publications": "Publikationen",
+      "research": "Forschung"
     },
     "resources_submenu": {
       "study_at_academy": "Studium an der Akademie",
@@ -72,5 +73,28 @@
     "music": "Musik",
     "music_description": "Entdecken Sie die einzigartige Musik der Äthiopisch-Orthodoxen Tewahedo-Kirche.",
     "more_courses": "Und vieles mehr..."
-  }
+  },"news": {
+  "latest_news": "Neueste Nachrichten",
+  "more": "Mehr...",
+  "back": "Zurück"
+
+},"fellowships": {
+  "open_fellowships": "Offene Stipendien",
+  "more": "Mehr...",
+  "title": "Stipendien",
+  "description": "Das Zentrum für das Studium des Christentums bietet Stipendienmöglichkeiten für Wissenschaftler, Studenten und Forscher, die an der Erforschung verschiedener Aspekte des Christentums interessiert sind. Diese Stipendien sollen Einzelpersonen dabei unterstützen, die Geschichte, Theologie, Kultur und gesellschaftliche Auswirkungen des christlichen Glaubens zu erforschen. Derzeit sind Bewerbungen für verschiedene Arten von Stipendien möglich.",
+  "open_for_registration": "Stipendien zur Anmeldung geöffnet",
+  "all_fellowships": "Alle Stipendien"
+},    "contact_us": {
+  "title": "Kontaktieren Sie uns",
+  "form_success": "Formular erfolgreich eingereicht!",
+  "first_name": "Vorname",
+  "last_name": "Nachname",
+  "affiliation": "Zugehörigkeit",
+  "email": "E-Mail",
+  "phone": "Telefonnummer",
+  "comment": "Kommentar",
+  "send_button": "Senden"
+}
+
 }

@@ -31,6 +31,7 @@ import ContactList from "./Contact/ContactList";
 import StudyAtAcademy from "./Resources/StudyAtAcademy";
 import StudyOnline from "./Resources/StudyOnline";
 import MoreCourses from "./Resources/MoreCourses";
+import ChangePassword from "../Admin/ChangePassword";
 
 const Routing = () => {
 
@@ -45,7 +46,7 @@ const Routing = () => {
             <Route path="/" element={
                     <Home/>
             }/>
-            <Route path="/research" element={<Research/>}/>
+            {/*<Route path="/research" element={<Research/>}/>*/}
             <Route path="/events" element={<Calendar />} />
             <Route path="/login" element={<SignInSide />} />
             <Route path="/register" element={<SignUp />} />
@@ -82,7 +83,7 @@ const Routing = () => {
                 <AdminRoute >
                     <NewsPostForm />
                 </AdminRoute>} />
-            <Route path="/publications" element={<ResearchPaperList />} />
+            {/*<Route path="/publications" element={<ResearchPaperList />} />*/}
             <Route path="/more-courses" element={<MoreCourses />} />
 
             <Route path="/fellowships" element={<Fellowships />} />
@@ -92,7 +93,11 @@ const Routing = () => {
             <Route path="/layout-news" element={<LayoutNews />} />
             <Route path="/fellowships/:title" element={<SingleFellowshipDetail />} />
             <Route path="/news/:title" element={<LayoutNews />} />
-
+            <Route path="/admin/change-password" element={
+                <AdminRoute>
+                    <ChangePassword />
+                </AdminRoute>
+            } />
             <Route path="/admin/dashboard" element={
                 <AdminRoute >
                     <AdminDashboard />

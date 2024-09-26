@@ -22,6 +22,8 @@ const NewsItem = ({ news={}, onRemove }) => {
 
     const handleEdit = (id) => {
         const newsItem = newsPosted.find(news => news.id === id);
+        const formattedDate = new Date(newsItem.date).toLocaleDateString('en-GB').split('/').reverse().join('-');
+
         setEditFormValues(newsItem);
         setEditId(id);
     };
@@ -91,7 +93,7 @@ const NewsItem = ({ news={}, onRemove }) => {
                                             <TextField name="title" label="Title" value={editFormValues.title} onChange={handleFormChange} />
                                             <TextField name="content" label="Content" value={editFormValues.content} onChange={handleFormChange} />
                                             <input type="file" accept="image/*" onChange={handleImageChange} />
-                                            <TextField name="date" label="Date" value={editFormValues.date} onChange={handleFormChange} />
+                                            <TextField name="date" label="Date" value={editFormValues.date.slice(0,10)} onChange={handleFormChange} />
                                             <Button type="submit">Submit</Button>
                                         </Stack>
                                     </form>

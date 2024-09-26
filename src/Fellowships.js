@@ -2,35 +2,22 @@ import React, {useEffect, useState} from 'react';
 import {Box, Card, CardContent, Grid, Paper, Typography, useTheme} from '@mui/material';
 import {Link} from "react-router-dom";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
 
-const newsItems = [
-    {
-        title: 'Title of fellowship 1',
-        image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn'
-    },
-    {
-        title: 'Title of fellowship 2',
-        image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn'
-    },
-    {
-        title: 'Title of fellowship 3',
-        image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn'
-    },
-    {
-        title: 'Title of fellowship 4',
-        image: 'https://th.bing.com/th/id/OIG2.WSSy5rOyS9yPsD7xf2zI?pid=ImgGn'
-    },
-];
 
 const Fellowships = () => {
     const theme = useTheme();
     const [papers, setPapers] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchPapers = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/api/research/papers');
-                setPapers(response.data);
+                console.log('Fetched papers:', response.data); // Log fetched data
+                const sortedPapers = response.data.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort papers by date
+                console.log('Sorted papers:', sortedPapers); // Log sorted data
+                setPapers(sortedPapers); // Set the sorted papers data in state
             } catch (error) {
                 console.error('Error fetching research papers:', error);
             }
@@ -61,7 +48,7 @@ const Fellowships = () => {
                         }}
                     >
                         <Typography variant="h5" gutterBottom bgcolor={'#000000'} color={'#ffffff'}>
-                            Open Fellowships
+                            {t('fellowships.open_fellowships')}
                         </Typography>
                             {papers.map((paper) => (
                                 <CardContent sx={{
@@ -80,7 +67,7 @@ const Fellowships = () => {
                             </CardContent> ))}
                             <Box sx={{textAlign: 'center', padding: 2}}>
                             <Link to="/fellowships-detail" sx={{textDecoration: 'none'}}>
-                                More...
+                                {t('fellowships.more')}
                             </Link>
                         </Box>
                     </Card>

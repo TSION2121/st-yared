@@ -32,15 +32,16 @@
     "programs": "Programs",
     "resources": "Resources",
     "events": "Events",
-    "about": "About",
-    "contact": "Contact",
+    "about": "About Us",
+    "contact": "Contact Us",
     "login": "Login",
     "dashboard": "Dashboard",
     "logout": "Logout",
     "logo_alt": "EOTC Academy Logo",
     "programs_submenu": {
-      "projects": "Projects",
-      "publications": "Publications"
+      "training": "Trainings",
+      "publications": "Publications",
+      "research": "Researches"
     },
     "resources_submenu": {
       "study_at_academy": "Study at the Academy",
@@ -55,7 +56,7 @@
   }
 ,
   "study_online": {
-    "welcome": "Welcome to the Study Online page!",
+    "welcome": "Welcome to St. Yared Academy!",
     "language": "Language",
     "language_description": "Learn about the rich and diverse languages of the Ethiopian Orthodox Tewahedo Church from the comfort of your home.",
     "literature": "Literature",
@@ -65,7 +66,7 @@
     "more_courses": "And many more..."
   },
   "study_at_academy": {
-    "welcome": "Welcome to the Study at Academy page!",
+    "welcome": "Welcome to St. Yared Academy!",
     "language": "Language",
     "language_description": "Learn about the rich and diverse languages of the Ethiopian Orthodox Tewahedo Church.",
     "literature": "Literature",
@@ -73,6 +74,29 @@
     "music": "Music",
     "music_description": "Discover the unique music of the Ethiopian Orthodox Tewahedo Church.",
     "more_courses": "And many more..."
+  },
+  "news": {
+    "latest_news": "Latest News",
+    "more": "More...",
+    "back": "Back"
+  }, "fellowships": {
+  "open_fellowships": "Open Fellowships",
+  "more": "More...",
+  "title": "Fellowships",
+  "description": "The Center for the Study of Christianity provides fellowship opportunities for scholars, students, and researchers interested in researching various aspects of Christianity. These fellowships aim to support individuals in exploring the history, theology, culture, and societal impact of the Christian faith. Applications are currently open for various types of fellowships.",
+  "open_for_registration": "Fellowships open for registration",
+  "all_fellowships": "All Fellowships"
+},
+  "contact_us": {
+    "title": "Contact Us",
+    "form_success": "Form successfully submitted!",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "affiliation": "Affiliation",
+    "email": "Email",
+    "phone": "Phone Number",
+    "comment": "Comment",
+    "send_button": "Send"
   }
 }
 

@@ -14,7 +14,7 @@ const AdsCarousel = () => {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
+        slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
@@ -38,12 +38,12 @@ const AdsCarousel = () => {
                             src={img}
                             alt={`Banner ${index + 1}`}
                             style={{
-                                width: 'fit-content', // Use viewport width (vw) for full screen width
+                                width: '85%', // Use viewport width (vw) for full screen width
                                 height: 'auto', // Auto height to maintain aspect ratio
                                 // maxWidth:'100%',
-                                maxHeight: '80vh', // Max height to fit the screen height
-                                objectFit: 'cover', // Contain the image within the div without cropping
-                                margin: '0 80px',
+                                maxHeight: '60vh', // Max height to fit the screen height
+                                objectFit: 'scale-down', // Contain the image within the div without cropping
+                                margin: '0 20px',
                             }}
                         />
                     </div>

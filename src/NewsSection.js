@@ -2,18 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Box, Card, CardContent, Grid, Typography, useTheme, Pagination } from '@mui/material';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+
 
 const NewsSection = ({ darkMode, showPagination }) => {
     const theme = useTheme();
     const [newsItems, setNewsItems] = useState([]); // State to hold news data
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5; // Set the number of items per page
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchNews = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/api/news');
-                setNewsItems(response.data); // Set the news data in state
+                const sortedNews = response.data.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort news by date
+                setNewsItems(sortedNews); // Set the sorted news data in state
             } catch (error) {
                 console.error('Error fetching news:', error);
             }
@@ -43,8 +47,8 @@ const NewsSection = ({ darkMode, showPagination }) => {
                             marginBottom: 2,
                         }}
                     >
-                        <Typography variant="h5" gutterBottom bgcolor={'#000000'} color={'#ffffff'}>
-                            Latest News
+                        <Typography variant="h5" component="div" gutterBottom bgcolor={'#000000'} color={'#ffffff'}>
+                            {t('news.latest_news')}
                         </Typography>
                         {currentItems.map((news, index) => (
                             <CardContent key={index}
@@ -61,7 +65,7 @@ const NewsSection = ({ darkMode, showPagination }) => {
                             </CardContent>))}
                         <Box sx={{ textAlign: 'center', padding: 2 }}>
                             <Link to="/news-detail" sx={{ textDecoration: 'none' }}>
-                                More...
+                                {t('news.more')}
                             </Link>
                         </Box>
 

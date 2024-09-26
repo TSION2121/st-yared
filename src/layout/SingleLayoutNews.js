@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import NewsSection from "../NewsSection";
+import { useTranslation } from 'react-i18next';
 
 // Keyframes for animation
 const fadeIn = keyframes`
@@ -59,6 +60,7 @@ const Layout = ({darkMode}) => {
     const { title } = useParams(); // Get the title from the URL
     const navigate = useNavigate(); // Hook to access the navigate function
     const [newsDetail, setNewsDetail] = useState(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -94,7 +96,7 @@ const Layout = ({darkMode}) => {
 
                             <Container maxWidth="lg">
                                 <Button onClick={handleBack} style={{ background:"white", margin: '20px 0' }}>
-                                    Back
+                                    {t('news.back')}
                                 </Button>
                                 <Paper elevation={3} sx={{ padding: "20px", marginTop: "20px", flexGrow: 1 }}>
                                     {newsDetail ? (

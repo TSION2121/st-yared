@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { TextField, Button, Grid, useTheme } from '@mui/material';
+import {TextField, Button, Grid, useTheme, Container, Card} from '@mui/material';
 import { Box } from "@mui/joy";
 
 const NewsPostForm = () => {
@@ -58,22 +58,16 @@ const NewsPostForm = () => {
     };
 
     return (
-        <Box sx={{
-            mt: 1,
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr', md: '1fr' },
-            gap: 2,
-            alignItems: 'center',
-            padding: '10px',
-            borderRadius: '8px',
-            backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.paper : 'lavender',
-            color: theme.palette.mode === 'dark' ? theme.palette.text.primary : 'light',
-            border: '2px solid #888',
-            margin: '10px',
-            width: '70%',
-            boxSizing: 'border-box',
-            '& .MuiTextField-root': { m: 1 },
-        }}>
+        <Container maxWidth="md">
+            <Card
+                sx={{ display:'flex' , flexDirection:'column', justifyContent:"space-between", rowGap:'10px', padding:'20px',
+                    backgroundColor:
+                        theme.palette.mode === 'dark'
+                            ? theme.palette.background.paper
+                            : 'lavender',
+                    color: theme.palette.mode === 'dark' ? theme.palette.text.primary : 'light',
+                }}
+            >
             {formSubmitted && (
                 <Box sx={{ backgroundColor: 'lightgreen', color: 'black' }}>
                     News added successfully!
@@ -147,8 +141,8 @@ const NewsPostForm = () => {
                     </Grid>
                 </Grid>
             </form>
-        </Box>
-    );
+            </Card>
+        </Container>     );
 };
 
 export default NewsPostForm;

@@ -5,7 +5,9 @@ import { AuthContext } from '../Context/AuthContext';
 
 const AdminRoute = ({ children }) => {
     const { isAdmin } = useContext(AuthContext);
-    return isAdmin ?children : <Navigate to="/not-authorized" />;
+    console.log('isAdmin:', isAdmin); // Add this line
+    return isAdmin ? children : <Navigate to="/not-authorized" />;
 };
+
 
 export default AdminRoute;

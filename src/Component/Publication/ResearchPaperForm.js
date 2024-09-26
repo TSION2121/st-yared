@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {TextField, Button, Box, Grid, Container, useTheme, Card} from '@mui/material';
 import styled from "styled-components";
 import {StyledCard} from "../../Styles/StyleComponent";
@@ -15,11 +15,15 @@ const ResearchPaperForm = () => {
         abstractText: '',
         section: '',
         conclusion: '',
-        reference: ''
+        reference: '',
+        date: ''
     });
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-
+    useEffect(() => {
+        const today = new Date().toISOString().split('T')[0];
+        setPaper(prevState => ({ ...prevState, date: today }));
+    }, []);
     // const handleChange = (e) => {
     //     setPaper({ ...paper, [e.target.name]: e.target.value });
     // };
@@ -41,6 +45,8 @@ const ResearchPaperForm = () => {
         formData.append('section', paper.section);
         formData.append('conclusion', paper.conclusion);
         formData.append('reference', paper.reference);
+        formData.append('date', paper.date);
+
         if (paper.abstractText.length > 1000) { // Replace 1000 with your column's max length
             console.error('Error: Abstract text is too long.');
             return;
@@ -64,7 +70,8 @@ const ResearchPaperForm = () => {
                 abstractText: '',
                 section: '',
                 conclusion: '',
-                reference: ''
+                reference: '',
+                date: ''
             });
             setFormSubmitted(true);
         } catch (error) {
@@ -148,18 +155,8 @@ const ResearchPaperForm = () => {
                         onChange={handleChange}
                     />
                 </Grid>
+
                     <Grid item xs={12} sm={4}>
-                        <TextField
-                            size="small"
-                            fullWidth
-                            name="image"
-                            id="image"
-                            type="file"
-                            placeholder="Image"
-                            onChange={handleChange}
-                        />
-                    </Grid>
-                <Grid item xs={12} sm={6}>
                     <TextField
                         size="small"
                         margin="normal"
@@ -190,7 +187,7 @@ const ResearchPaperForm = () => {
                         rows={2}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={4}>
                     <TextField
                         size="small"
                         margin="normal"
@@ -219,8 +216,36 @@ const ResearchPaperForm = () => {
                         // multiline
                         rows={4}
                     />
+
                 </Grid>
-            </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <TextField
+                            size="small"
+                            fullWidth
+                            name="image"
+                            id="image"
+                            type="file"
+                            placeholder="Image"
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <TextField
+                            size="small"
+                            fullWidth
+                            required
+                            id="date"
+                            name="date"
+                            type="date"
+                            placeholder="Date"
+                            value={paper.date}
+                            onChange={handleChange}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </Grid>
+                </Grid>
             <Button
                 type="submit"
                 fullWidth

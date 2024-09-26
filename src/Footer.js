@@ -1,13 +1,13 @@
 import React from 'react';
 import { Container, Grid, Typography, useTheme } from '@mui/material';
 import styled from 'styled-components';
+import { SocialIcon } from 'react-social-icons';
 
 const StyledFooter = styled('footer')(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.paper : 'royalblue',
     color: theme.palette.mode === 'dark' ? theme.palette.text.primary : 'white',
     padding: '20px 0',
     marginTop: '80px',
-
     width: '100%',
 }));
 
@@ -19,38 +19,34 @@ const Footer = () => {
             <Container maxWidth="lg">
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={4}>
-                        <Typography variant="h7">St. Yared Academy of the EOTC  in Germany</Typography>
+                        <Typography variant="h7">St. Yared Academy of the EOTC in Germany</Typography>
                         <Typography>
                             Ancient - Apostolic - Revered
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Typography variant="h6">Quick Links</Typography>
-                        {/* Add your quick links here */}
+                        <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                            <SocialIcon url="https://www.youtube.com/channel/UCXXXXXX" />
+                            <SocialIcon url="https://t.me/yourchannel" />
+                            <SocialIcon url="https://twitter.com/yourprofile" />
+                            <SocialIcon url="https://www.tiktok.com/@yourprofile" />
+                        </div>
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Typography variant="h6">Get in Touch</Typography>
-                     <Typography>
-                         St. Yared Academy of Ethiopian Orthodox Tewahido Church in Germany
-                     </Typography>
-
                         <Typography>
-
-                         Emmi-Ruben-Weg 15a </Typography>
-                        <Typography> 21147 Hamburg</Typography>
-                        <Typography>
-                            Email: office@yared-academy.org
+                            St. Yared Academy of Ethiopian Orthodox Tewahido Church in Germany
                         </Typography>
-                        <Typography> Bank: Deutsche Skatbank</Typography>
-                        <Typography>  IBAN: DE06 8306 5408 0005 3525 92</Typography>
-                        <Typography>   BIC: GENODEF1SLR</Typography>
-
-
-                         {/*Add more contact details if necessary */}
+                        <Typography>Emmi-Ruben-Weg 15a</Typography>
+                        <Typography>21147 Hamburg</Typography>
+                        <Typography>Email: office@yared-academy.org</Typography>
+                        <Typography>Bank: Deutsche Skatbank</Typography>
+                        <Typography>IBAN: DE06 8306 5408 0005 3525 92</Typography>
+                        <Typography>BIC: GENODEF1SLR</Typography>
                     </Grid>
                 </Grid>
             </Container>
-
         </StyledFooter>
     );
 };

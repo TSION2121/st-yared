@@ -4,6 +4,7 @@ import { styled, keyframes } from '@mui/system';
 import axios from "axios";
 import {Link} from "react-router-dom";
 import StYared from './assets/st-Yared-1.png';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -44,7 +45,7 @@ const StyledCardContent = styled(CardContent)`
   flex-grow: 1;
 `;
 
-const newsItems = [
+const paperItems = [
     {
         title: 'Details of news item 1...',
         image:   StYared
@@ -60,6 +61,7 @@ const newsItems = [
    ];
 const FellowshipHolder = () => {
     const [papers, setPapers] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchPapers = async () => {
@@ -77,35 +79,40 @@ const FellowshipHolder = () => {
     return (
         <div>
             <Container>
-                <Typography variant="h4">Fellowships</Typography>
+                <Typography variant="h4">
+                    {t('fellowships.title')}
+                </Typography>
                 <Typography variant="body1">
-                    The Center for the Study of Christianity provides fellowship opportunities for scholars, students, and researchers interested in researching various aspects of Christianity. These fellowships aim to support individuals in exploring the history, theology, culture, and societal impact of the Christian faith. Applications are currently open for various types of fellowships.
+                    {t('fellowships.description')}
                 </Typography>
 
         <Box>
-                <Typography variant="h4">Fellowships open for registration</Typography>
+                <Typography variant="h4">
+                    {t('fellowships.open_for_registration')}
+
+                </Typography>
 
             <Grid container spacing={4}>
-                {papers.map((newsItem) => (
+                {papers.map((paperItem) => (
 
-                    <Grid item key={newsItem.id} xs={12} sm={6} md={4}>
+                    <Grid item key={paperItem.id} xs={12} sm={6} md={4}>
 
                         <StyledCard>
                             <StyledCardMedia
-                                image={`data:image/jpeg;base64,${newsItem.image}`}
-                                title={newsItem.title}
+                                image={`data:image/jpeg;base64,${paperItem.image}`}
+                                title={paperItem.title}
                             />
                             <StyledCardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    <Link to={`/fellowships/${newsItem.title.replace(/\s+/g, '-').toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                        {newsItem.title}
+                                    <Link to={`/fellowships/${paperItem.title.replace(/\s+/g, '-').toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        {paperItem.title}
                                     </Link>
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary">
-                                    {newsItem.date}
+                                    {paperItem.date}
                                 </Typography>
                                 <Typography>
-                                    {newsItem.description}
+                                    {paperItem.description}
                                 </Typography>
                             </StyledCardContent>
                         </StyledCard>
@@ -115,27 +122,30 @@ const FellowshipHolder = () => {
         </Box>
 
         <Box>
-            <Typography variant="h4">All Fellowships</Typography>
+            <Typography variant="h4">
+                {t('fellowships.all_fellowships')}
+
+            </Typography>
 
             <Grid container spacing={4}>
-                {newsItems.map((newsItem) => (
+                {papers.map((paperItem) => (
 
-                    <Grid item key={newsItem.id} xs={12} sm={6} md={4}>
+                    <Grid item key={paperItem.id} xs={12} sm={6} md={4}>
 
                         <StyledCard>
                             <StyledCardMedia
-                                image={newsItem.image}
-                                title={newsItem.title}
+                                image={`data:image/jpeg;base64,${paperItem.image}`}
+                                title={paperItem.title}
                             />
                             <StyledCardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    {newsItem.title}
+                                    {paperItem.title}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary">
-                                    {newsItem.date}
+                                    {paperItem.date}
                                 </Typography>
                                 <Typography>
-                                    {newsItem.description}
+                                    {paperItem.description}
                                 </Typography>
                             </StyledCardContent>
                         </StyledCard>

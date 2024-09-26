@@ -4,7 +4,7 @@ import {Container, Paper, Box, Typography, Button, Grid} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
-    const { isAdmin } = useContext(AuthContext);
+    const { isAdmin ,authState } = useContext(AuthContext);
     const navigate = useNavigate();
 
     if (!isAdmin) {
@@ -39,7 +39,13 @@ const AdminDashboard = () => {
             <Paper sx={{ my: 2, p: 2 }}>
                 <Typography variant="h6">Read Contact Message</Typography>
                 <Button variant="contained" color="primary" onClick={() => navigate('/Contactview')}>Get Contact us Messages</Button>
-            </Paper></Grid>
+            </Paper>
+            <Paper sx={{ my: 2, p: 2 }}>
+                <Typography variant="h6">Change Password</Typography>
+                <Button variant="contained" color="primary" onClick={() => navigate('/admin/change-password')}>Change Password</Button>
+            </Paper>
+
+    </Grid>
         </Container>
     );
 };

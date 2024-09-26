@@ -3,11 +3,14 @@ import {useNavigate, useParams} from 'react-router-dom';
 import axios from 'axios';
 import { Container, Paper, Typography, Grid, Divider } from '@mui/material';
 import Button from "@mui/material/Button";
+import { useTranslation } from 'react-i18next';
+
 
 const SingleFellowshipDetail = () => {
     const { title } = useParams();
     const navigate = useNavigate(); // Hook to access the navigate function
     const [fellowshipDetail, setFellowshipDetail] = useState(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchPapers = async () => {
@@ -33,7 +36,8 @@ const SingleFellowshipDetail = () => {
     return (
         <Container maxWidth="lg">
             <Button onClick={handleBack} style={{ margin: '20px 0' }}>
-                Back
+                {t('news.back')}
+
             </Button>
             <Paper elevation={3} sx={{ padding: "20px", marginTop: "20px", flexGrow: 1 }}>
                 {fellowshipDetail ? (

@@ -4,11 +4,13 @@ import {Container, Grid, TextField, Button, Typography, Box, useTheme, Card} fro
 import {styled} from "@mui/system";
 import {StyledCard} from "../../Styles/StyleComponent";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
 
 
 const ContactUs = () => {
     const theme =useTheme();
     console.log(theme);
+    const { t } = useTranslation();
 
 
     const [formData, setFormData] = useState({
@@ -16,6 +18,7 @@ const ContactUs = () => {
         lastName: '',
         affiliation: '',
         email: '',
+        phone: '', // Add phone number field
         comment: ''
     });
 
@@ -37,7 +40,7 @@ const ContactUs = () => {
         try {
             const response = await axios.post('http://localhost:8080/api/contact/submit', formData);
             console.log(response.data.message);
-            setFormData({ firstName: '', lastName: '', affiliation: '', email: '', comment: '' }); // Clear the form
+            setFormData({ firstName: '', lastName: '', affiliation: '', email: '', phone: '', comment: '' }); // Clear the form
             setSuccess(true); // Set the success state to true
         } catch (error) {
             console.error('There was an error!', error);
@@ -54,7 +57,9 @@ const ContactUs = () => {
             // margin: '10px'
         }}
         >
-            {success && <p>Form successfully submitted!</p>
+            {success && <p>
+                {t('contact_us.form_success')}
+            </p>
             // navigate("/")
             }
 
@@ -65,14 +70,13 @@ const ContactUs = () => {
                         : 'white',
                 color: theme.palette.mode === 'dark' ? theme.palette.text.primary : 'light',            }}>
                 <Typography variant="h4" gutterBottom>
-                    Contact Us
-                </Typography>
+                    {t("contact_us.title")}                </Typography>
                 <form onSubmit={handleSubmit} >
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 required
-                                label="First Name"
+                                label={t("contact_us.first_name")}
                                 name="firstName"
                                 id="firstName"
                                 fullWidth
@@ -86,7 +90,7 @@ const ContactUs = () => {
                             <TextField
                                 size="small"
                                 required
-                                label="Last Name"
+                                label={t("contact_us.last_name")}
                                 name="lastName"
                                 id="lastName"
                                 fullWidth
@@ -96,10 +100,10 @@ const ContactUs = () => {
 
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sm={6}>
                             <TextField
                                 required
-                                label="Affiliation"
+                                label={t("contact_us.affiliation")}
                                 name="affiliation"
                                 id="affiliation"
                                 fullWidth
@@ -109,11 +113,11 @@ const ContactUs = () => {
 
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sm={6}>
                             <TextField
                                 required
                                 type="email"
-                                label="Email"
+                                label={t("contact_us.email")}
                                 name="email"
                                 id="email"
                                 fullWidth
@@ -123,8 +127,11 @@ const ContactUs = () => {
                             />
                         </Grid>
                         <Grid item xs={12}>
+                            <TextField required label={t("contact_us.phone")} name="phone" id="phone" fullWidth value={formData.phone} onChange={handleChange} size="small" />
+                        </Grid>
+                        <Grid item xs={12}>
                             <TextField
-                                label="Comment"
+                                label={t("contact_us.comment")}
                                 name="comment"
                                 id="comment"
                                 fullWidth
@@ -136,8 +143,9 @@ const ContactUs = () => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Button type="submit" variant="contained" color="primary" fullWidth>
-                                Send
+                            <Button type="submit"  variant="contained" color="primary" fullWidth>
+                                {t("contact_us.send_button")}
+
                             </Button>
                         </Grid>
                     </Grid>
