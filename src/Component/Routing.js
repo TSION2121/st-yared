@@ -48,7 +48,7 @@ const Routing = () => {
             }/>
             {/*<Route path="/research" element={<Research/>}/>*/}
             <Route path="/events" element={<Calendar />} />
-            <Route path="/login" element={<SignInSide />} />
+            <Route path="/SignIn" element={<SignInSide />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/about-and-mission" element={<AboutUs/>}/>
             <Route path="/director-and-others" element={<DirectorAndOthers/>}/>

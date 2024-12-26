@@ -2,8 +2,9 @@
   "name": "st-yared",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tsion2121.github.io/",
-  "proxy": "http://localhost:8080",
+"proxy": "http://localhost:8080",
+  "homepage": "https://tsion2121.github.io/styared/",
+
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",

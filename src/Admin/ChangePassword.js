@@ -49,6 +49,7 @@ const ChangePasswordForm = () => {
                 <Card sx={{ height: "auto" }}>
                     <CardContent>
                         <Typography variant="h5">Change Password</Typography>
+                        {message && <Typography color="green">{message}</Typography>}<br/>
                         <form onSubmit={handleFormSubmit}>
                             <Stack spacing={2} direction="column">
                                 <TextField name="oldPassword" label="Old Password" type="password" value={editFormValues.oldPassword} onChange={handleFormChange} required />
@@ -57,7 +58,6 @@ const ChangePasswordForm = () => {
                                 <Button type="submit">Submit</Button>
                             </Stack>
                         </form>
-                        {message && <Typography color="error">{message}</Typography>}
                     </CardContent>
                 </Card>
             </Grid>
